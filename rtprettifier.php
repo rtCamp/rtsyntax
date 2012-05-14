@@ -45,16 +45,47 @@ add_action( 'wp_enqueue_scripts', 'rtprettifier_scripts_and_styles' );
 
 function rtprettifier_onload() { ?>
     <script type="text/javascript">
-        window.onload = prettyPrint;
-        jQuery('pre').each( function(){
-            alert('hi');
-            $regexp = '/lang-(.*)( |")/'; // Change the regex here suiting your phone number format
+        jQuery(document).ready( function(){
+            jQuery('pre').each( function(){
+                jQuery(this).wrap('<div class="prettyprint-code" />')
+                jQuery(this).before('<a href="#" class="copy-source">Copy</a>')
+            });
+            jQuery('.copy-source').each(function(){
+                jQuery(this).after('<pre class="plain-code" style="display:none;">'+jQuery(this).parent().find('pre').html()+'</pre>'); 
+            });
+            jQuery('.copy-source').live( 'click', function(){
+                jQuery(window.open().document.body).html('<pre>'+jQuery(this).parent().find('pre').html()+'</pre>').selectText('pre');
+                return false;
+            });
+        });
+        window.onload = prettyPrint
+        function selectText(element) {
+    var doc = document;
+    var text = doc.getElementById(element);    
 
-//if( preg_match( $regexp, jQuery(this).attr('class') ) ) {
-    console.log(preg_match( $regexp, jQuery(this).attr('class') ));
-//}
-            jQuery(this).append('<span class="lang-type"></span>');
-        } );
+    if (doc.body.createTextRange) { // ms
+        var range = doc.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+    } else if (window.getSelection) { // moz, opera, webkit
+        var selection = window.getSelection();            
+        var range = doc.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
+//        jQuery(window).load(function() {
+//            jQuery('.prettyprint').each( function(){
+//                var pre_classes = jQuery(this).attr('class').split(' ');
+//                for ( var i=0; i < pre_classes.length; i++ ) {
+//                    if ( pre_classes[i].match( '^lang-' ) ) {
+//                        var lang = pre_classes[i].replace('lang-', '');
+//                        jQuery(this).before('<span class="lang-label">'+lang+'</span>');
+//                    }
+//                }
+//            });
+//        });
     </script><?php
 }
 add_action('wp_head','rtprettifier_onload');
