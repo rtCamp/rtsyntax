@@ -23,13 +23,13 @@ function rtprettifier_addbuttons() {
  
 function register_rtprettifier_button($buttons) {
    array_push($buttons, "separator", "rtprettifier");
-   return jQuerybuttons;
+   return $buttons;
 }
  
 // Load the TinyMCE plugin : editor_plugin.js (wp2.5)
 function add_rtprettifier_tinymce_plugin($plugin_array) {
    $plugin_array['rtprettifier'] = plugin_dir_url(__FILE__).'js/rtprettify-admin.js';
-   return jQueryplugin_array;
+   return $plugin_array;
 }
  
 // init process for button control
@@ -39,40 +39,22 @@ function rtprettifier_scripts_and_styles() {
     if ( is_singular() ) {
         wp_enqueue_style( 'rtprettify', plugin_dir_url(__FILE__) . 'css/rtprettify.css');
         wp_enqueue_script( 'rtprettify', plugin_dir_url(__FILE__) . 'js/rtprettify.js', array( 'jquery' ) );
-        wp_enqueue_script( 'zclip', plugin_dir_url(__FILE__) . 'js/ZeroClipboard.js' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'rtprettifier_scripts_and_styles' );
 
 function rtprettifier_onload() { ?>
     <script type="text/javascript">
-        ZeroClipboard.setMoviePath( '<?php echo plugin_dir_url(__FILE__); ?>js/ZeroClipboard.swf' );
         window.onload = prettyPrint;
+        jQuery('pre').each( function(){
+            alert('hi');
+            $regexp = '/lang-(.*)( |")/'; // Change the regex here suiting your phone number format
 
-    jQuery(document).ready(function() {
-        jQuery('pre').each(function(){
-            jQuery(this).before('<a href="#" class="copy">Copy</a>')
-            jQuery(this).prev().click(function(e) {
-            e.preventDefault();    
-            clip = new ZeroClipboard.Client();
-            var txt = jQuery(this).next().text();
-            txt = txt.replace('\n', '\r\n');
-            clip.setHandCursor(true);
-            clip.setText(txt);
-            clip.glue(this);
-            return false;
-
-        }); 
-        jQuery('.copy').each(function(){
-           jQuery(this).trigger('click'); 
-        });
-        });
-
-    });
-    function nl2br (str, is_xhtml) {   
-var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
-return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
-}
+//if( preg_match( $regexp, jQuery(this).attr('class') ) ) {
+    console.log(preg_match( $regexp, jQuery(this).attr('class') ));
+//}
+            jQuery(this).append('<span class="lang-type"></span>');
+        } );
     </script><?php
 }
 add_action('wp_head','rtprettifier_onload');
