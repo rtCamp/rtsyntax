@@ -53,9 +53,9 @@ function rtprettifier_onload() { ?>
             jQuery('.copy-source').each(function(){
                 jQuery(this).after('<pre class="plain-code" style="display:none;">'+jQuery(this).parent().find('pre').html()+'</pre>'); 
             });
-            jQuery('.copy-source').live( 'click', function(){
+            jQuery('.copy-source').live( 'click', function(e){
+                e.preventDefault();
                 jQuery(window.open().document.body).html('<pre>'+jQuery(this).parent().find('pre').html()+'</pre>').selectText('pre');
-                return false;
             });
         });
         window.onload = prettyPrint
