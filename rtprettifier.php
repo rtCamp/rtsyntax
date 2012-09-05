@@ -48,7 +48,7 @@ function rtprettifier_onload() { ?>
         jQuery(document).ready( function(){
             jQuery('pre').each( function(){
                 jQuery(this).wrap('<div class="prettyprint-code" />')
-                jQuery(this).before('<a href="#" class="copy-source">Copy</a>')
+                jQuery(this).before('<a href="#" class="copy-source">Raw</a>')
             });
             jQuery('.copy-source').each(function(){
                 jQuery(this).after('<pre class="plain-code" style="display:none;">'+jQuery(this).parent().find('pre').html()+'</pre>'); 
@@ -75,17 +75,6 @@ function rtprettifier_onload() { ?>
         selection.addRange(range);
     }
 }
-//        jQuery(window).load(function() {
-//            jQuery('.prettyprint').each( function(){
-//                var pre_classes = jQuery(this).attr('class').split(' ');
-//                for ( var i=0; i < pre_classes.length; i++ ) {
-//                    if ( pre_classes[i].match( '^lang-' ) ) {
-//                        var lang = pre_classes[i].replace('lang-', '');
-//                        jQuery(this).before('<span class="lang-label">'+lang+'</span>');
-//                    }
-//                }
-//            });
-//        });
     </script><?php
 }
 add_action('wp_head','rtprettifier_onload');
