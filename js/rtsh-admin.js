@@ -1,14 +1,14 @@
 (function() {
-    tinymce.create('tinymce.plugins.rtprettifier', {
+    tinymce.create('tinymce.plugins.rtsh', {
         init : function(d, url) {
                     var plugin_url = url.replace('/js', '');
-                    d.addButton('rtprettifier', {
+                    d.addButton('rtsh', {
                         title : 'rtPrettify',
-                        image : plugin_url+'/img/rtprettify.png',
+                        image : plugin_url+'/img/rtsh.png',
                         cmd : 'mcertPrettify'
 
                     });
-                    d.addCommand("mcertPrettify",function(){d.windowManager.open({file:plugin_url+"/htm/rtprettify.htm",
+                    d.addCommand("mcertPrettify",function(){d.windowManager.open({file:plugin_url+"/htm/rtsh.htm",
                         width:parseInt(500),
                         height:parseInt(350),
                         inline:1})});
@@ -18,7 +18,7 @@
                         },
         getInfo : function() {
                         return {
-                            longname : "rtPrettifier",
+                            longname : "rtSyntaxHighlighter",
                             author : 'rtCamp',
                             authorurl : 'http://rtcamp.com/',
                             infourl : 'http://rtcamp.com/',
@@ -26,5 +26,5 @@
                         };
                     }
     });
-    tinymce.PluginManager.add('rtprettifier', tinymce.plugins.rtprettifier);
+    tinymce.PluginManager.add('rtsh', tinymce.plugins.rtsh);
 })();

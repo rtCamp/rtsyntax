@@ -1,4 +1,4 @@
-var rtPrettify = {
+var rtSyntaxHighlighter = {
                 init : function() {
                         this.resize();
                 },
@@ -31,4 +31,4 @@ var rtPrettify = {
                 }
         };
 
-        tinyMCEPopup.onInit.add(rtPrettify.init, rtPrettify);
+        tinyMCEPopup.onInit.add(rtSyntaxHighlighter.init, rtSyntaxHighlighter);

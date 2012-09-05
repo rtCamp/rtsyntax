@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: rtPrettifier
+Plugin Name: rtSyntaxHighlighter
 Plugin URI: http://rtcamp.com
 Description: Google Code Prettifier Plugin for WordPress.
 Version: 1.0
@@ -9,41 +9,41 @@ Author URI: http://rtcamp.com
 Contributors: Joshua Abenazer
 */
 
-function rtprettifier_addbuttons() {
+function rtsh_addbuttons() {
    // Don't bother doing this stuff if the current user lacks permissions
    if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
      return;
  
    // Add only in Rich Editor mode
    if ( get_user_option('rich_editing') == 'true') {
-     add_filter("mce_external_plugins", "add_rtprettifier_tinymce_plugin");
-     add_filter('mce_buttons', 'register_rtprettifier_button');
+     add_filter("mce_external_plugins", "add_rtsh_tinymce_plugin");
+     add_filter('mce_buttons', 'register_rtsh_button');
    }
 }
  
-function register_rtprettifier_button($buttons) {
-   array_push($buttons, "separator", "rtprettifier");
+function register_rtsh_button($buttons) {
+   array_push($buttons, "separator", "rtsh");
    return $buttons;
 }
  
 // Load the TinyMCE plugin : editor_plugin.js (wp2.5)
-function add_rtprettifier_tinymce_plugin($plugin_array) {
-   $plugin_array['rtprettifier'] = plugin_dir_url(__FILE__).'js/rtprettify-admin.js';
+function add_rtsh_tinymce_plugin($plugin_array) {
+   $plugin_array['rtsh'] = plugin_dir_url(__FILE__).'js/rtsh-admin.js';
    return $plugin_array;
 }
  
 // init process for button control
-add_action('init', 'rtprettifier_addbuttons');
+add_action('init', 'rtsh_addbuttons');
 
-function rtprettifier_scripts_and_styles() {
+function rtsh_scripts_and_styles() {
     if ( is_singular() ) {
-        wp_enqueue_style( 'rtprettify', plugin_dir_url(__FILE__) . 'css/rtprettify.css');
-        wp_enqueue_script( 'rtprettify', plugin_dir_url(__FILE__) . 'js/rtprettify.js', array( 'jquery' ) );
+        wp_enqueue_style( 'rtsh', plugin_dir_url(__FILE__) . 'css/rtsh.css');
+        wp_enqueue_script( 'rtsh', plugin_dir_url(__FILE__) . 'js/rtsh.js', array( 'jquery' ) );
     }
 }
-add_action( 'wp_enqueue_scripts', 'rtprettifier_scripts_and_styles' );
+add_action( 'wp_enqueue_scripts', 'rtsh_scripts_and_styles' );
 
-function rtprettifier_onload() { ?>
+function rtsh_onload() { ?>
     <script type="text/javascript">
         jQuery(document).ready( function(){
             jQuery('pre').each( function(){
@@ -77,5 +77,5 @@ function rtprettifier_onload() { ?>
 }
     </script><?php
 }
-add_action('wp_head','rtprettifier_onload');
+add_action('wp_head','rtsh_onload');
 ?>
