@@ -48,14 +48,6 @@ function rtsh_onload() { ?>
         jQuery(document).ready( function(){
             jQuery('pre').each( function(){
                 jQuery(this).wrap('<div class="prettyprint-code" />')
-                jQuery(this).before('<a href="#" class="copy-source">Raw</a>')
-            });
-            jQuery('.copy-source').each(function(){
-                jQuery(this).after('<pre class="plain-code" style="display:none;">'+jQuery(this).parent().find('pre').html()+'</pre>'); 
-            });
-            jQuery('.copy-source').live( 'click', function(e){
-                e.preventDefault();
-                jQuery(window.open().document.body).html('<pre>'+jQuery(this).parent().find('pre').html()+'</pre>').selectText('pre');
             });
         });
         window.onload = prettyPrint
