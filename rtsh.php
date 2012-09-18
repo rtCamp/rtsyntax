@@ -50,7 +50,7 @@ function rtsh_onload() { ?>
                 jQuery(this).wrap('<div class="prettyprint-code" />')
             });
         });
-        window.onload = prettyPrint
+        window.onload = prettyPrint;
         function selectText(element) {
     var doc = document;
     var text = doc.getElementById(element);    

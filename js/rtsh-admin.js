@@ -3,12 +3,12 @@
         init : function(d, url) {
                     var plugin_url = url.replace('/js', '');
                     d.addButton('rtsh', {
-                        title : 'rtPrettify',
+                        title : 'rtSyntaxHighlighter',
                         image : plugin_url+'/img/rtsh.png',
-                        cmd : 'mcertPrettify'
+                        cmd : 'mcertSyntaxHighlighter'
 
                     });
-                    d.addCommand("mcertPrettify",function(){d.windowManager.open({file:plugin_url+"/htm/rtsh.htm",
+                    d.addCommand("mcertSyntaxHighlighter",function(){d.windowManager.open({file:plugin_url+"/htm/rtsh.htm",
                         width:parseInt(500),
                         height:parseInt(350),
                         inline:1})});
