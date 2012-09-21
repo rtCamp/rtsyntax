@@ -9,7 +9,7 @@
     body .prettyprint-code .copy-source:hover { color: #111; }
 
 /* Prettyprinted code snippets */
-pre.prettyprint { background: #F1F1F1;border: 1px solid #888;font-family: monospace;margin: 0 0 20px;overflow: hidden;padding: 5px;position: relative;white-space: pre-wrap; }
+pre.prettyprint { background: #F1F1F1;font-family: monospace;margin: 0 0 20px;overflow: hidden;padding: 5px;position: relative;white-space: pre-wrap; }
 
 /* Specify class=linenums on a pre to get line numbering */
 ol.linenums { list-style: decimal;margin: 0 0 0 40px; } /* IE indents via margin-left */

@@ -22,13 +22,15 @@ function rtsh_addbuttons() {
 }
  
 function register_rtsh_button($buttons) {
-   array_push($buttons, "separator", "rtsh");
+   array_push($buttons, "separator", "rtsh", "rtcode", "rtkey", "code");
    return $buttons;
 }
  
 // Load the TinyMCE plugin : editor_plugin.js (wp2.5)
 function add_rtsh_tinymce_plugin($plugin_array) {
    $plugin_array['rtsh'] = plugin_dir_url(__FILE__).'js/rtsh-admin.js';
+   $plugin_array['rtcode'] = plugin_dir_url(__FILE__).'js/rtsh-admin.js';
+   $plugin_array['rtkey'] = plugin_dir_url(__FILE__).'js/rtsh-admin.js';
    return $plugin_array;
 }
  
