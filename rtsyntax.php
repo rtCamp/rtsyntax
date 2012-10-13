@@ -16,6 +16,16 @@ class rtSyntax {
         if ( is_admin() ) {
             add_action( 'admin_init', array( &$this, 'register_settings' ) );
             add_action( 'admin_menu', array( &$this, 'admin' ) );
+            
+            // Don't bother doing this stuff if the current user lacks permissions
+//            if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
+//                return;
+ 
+            // Add only in Rich Editor mode
+//            if ( get_user_option( 'rich_editing' ) == 'true') {
+                add_filter( 'mce_external_plugins', array( $this, 'rtsyntax_buttons' ) );
+                add_filter( 'mce_buttons', array( $this, 'register_rtsyntax_buttons' ) );
+//            }
         } else {
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
             add_action( 'wp_head', array( $this, 'onload' ) );
@@ -85,6 +95,18 @@ class rtSyntax {
                 <?php submit_button(); ?>
             </form>
         </div><?php
+    }
+    
+    public function rtsyntax_buttons( $plugin_array ) {
+        $plugin_array['rtsyntax'] = plugin_dir_url(__FILE__).'js/rtsyntax.js';
+        $plugin_array['rtcode'] = plugin_dir_url(__FILE__).'js/rtsyntax.js';
+        $plugin_array['rtkey'] = plugin_dir_url(__FILE__).'js/rtsyntax.js';
+        return $plugin_array;
+    }
+    
+    public function register_rtsyntax_buttons( $buttons ) {
+        array_push( $buttons, "separator", "rtsyntax", "rtcode", "rtkey", "code" );
+        return $buttons;
     }
     
     public function enqueue() {
