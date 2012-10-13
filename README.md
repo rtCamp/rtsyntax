@@ -1,4 +1,4 @@
-rtSyntaxHighlighter-
+rtSyntax
 ====================
 
 A lightweight syntax highlighter for WordPress 
