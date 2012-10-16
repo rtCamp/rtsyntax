@@ -29,6 +29,7 @@ class rtSyntax {
         } else {
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
             add_action( 'wp_head', array( $this, 'onload' ) );
+            add_action( 'the_content', array( $this, 'convert_pres' ) );
         }
     }
     
@@ -117,6 +118,10 @@ class rtSyntax {
     
     public function onload() { ?>
         <script>hljs.initHighlightingOnLoad();</script><?php
+    }
+    
+    public function convert_pres( $content ){
+        return preg_replace( '/<pre(.*)>(.*)<\/pre>/isU', '<pre><code$1>$2</code></pre>', $content );
     }
     
 }  

@@ -9,9 +9,9 @@ var rtSyntax = {
                         var content;
                         var language = document.getElementById('language');
                         if ( '0' != language.value ) {
-                            content = '<pre><code class="'+language.value+'">'+h+'</code></pre>';
+                            content = '<pre class="'+language.value+'">'+h+'</pre>';
                         } else {
-                            content = '<pre><code>'+h+'<code></pre>';
+                            content = '<pre>'+h+'</pre>';
                         }
                             tinyMCEPopup.editor.execCommand('mceInsertContent', false, content);
                             tinyMCEPopup.close();
