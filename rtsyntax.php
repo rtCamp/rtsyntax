@@ -121,6 +121,7 @@ class rtSyntax {
     }
     
     public function convert_pres( $content ){
+        $content = str_replace( '<pre>', '<pre class="no-highlight">', $content );
         return preg_replace( '/<pre(.*)>(.*)<\/pre>/isU', '<pre><code$1>$2</code></pre>', $content );
     }
     
