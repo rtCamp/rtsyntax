@@ -2,11 +2,14 @@
 /*
 Plugin Name: rtSyntax
 Plugin URI: http://rtcamp.com
-Description: Code Highlighter for WordPress using highlight.js.
-Version: 1.0
-Author: rtCamp
-Author URI: http://rtcamp.com
-Contributors: Joshua Abenazer
+Contributors: rtcamp, rahul286, joshuaabenazer
+Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter
+Requires at least: 3.0
+Tested up to: 3.4.2
+Stable tag: 1.0
+License: GPLv2 or later (of-course)
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Donate Link: http://rtcamp.com/donate/
 */
 
 class rtSyntax {  
