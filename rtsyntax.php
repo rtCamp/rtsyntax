@@ -2,10 +2,14 @@
 /*
 Plugin Name: rtSyntax
 Plugin URI: http://rtcamp.com
+Author: rtCamp
+Author URI: http://rtcamp.com
+Version: 1.0
+Description: A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
 Contributors: rtcamp, rahul286, joshuaabenazer
-Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter
+Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
 Requires at least: 3.0
-Tested up to: 3.4.2
+Tested up to: 3.5
 Stable tag: 1.0
 License: GPLv2 or later (of-course)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -20,15 +24,8 @@ class rtSyntax {
             add_action( 'admin_init', array( &$this, 'register_settings' ) );
             add_action( 'admin_menu', array( &$this, 'admin' ) );
             
-            // Don't bother doing this stuff if the current user lacks permissions
-//            if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
-//                return;
- 
-            // Add only in Rich Editor mode
-//            if ( get_user_option( 'rich_editing' ) == 'true') {
-                add_filter( 'mce_external_plugins', array( $this, 'rtsyntax_buttons' ) );
-                add_filter( 'mce_buttons', array( $this, 'register_rtsyntax_buttons' ) );
-//            }
+            add_filter( 'mce_external_plugins', array( $this, 'rtsyntax_buttons' ) );
+            add_filter( 'mce_buttons', array( $this, 'register_rtsyntax_buttons' ) );
         } else {
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
             add_action( 'wp_head', array( $this, 'onload' ) );

@@ -1,8 +1,8 @@
 === rtSyntax ===
 Contributors: rtcamp, rahul286, joshuaabenazer
-Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter
+Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCETags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
 Requires at least: 3.0
-Tested up to: 3.4.2
+Tested up to: 3.5
 Stable tag: 1.0
 License: GPLv2 or later (of-course)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -24,21 +24,24 @@ A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
 == Installation ==
 
 Automatic Installation
+
 1. Log in to your WordPress admin panel, navigate to the Plugins menu and click Add New.
 1. In the search field type “rtSyntax” and click Search Plugins. From the search results, pick rtSyntax and click Install Now. Wordpress will ask you to confirm to complete the installation.
 
 Manual Installation
+
 1. Extract the zip file.
 1. Upload them to `/wp-content/plugins/` directory on your WordPress installation.
 1. Then activate the Plugin from Plugins page.
 
-= Neeed help! =
+= Need help! =
 
 Post your problem in [our free support forum](http://rtcamp.com/support/forum/wordpress-rtSyntax/) or wordpress.org forum here. We answer questions everywhere. Including serverfault, stackoverflow, etc.
 Its just that we are hyperactive on our own forum!
 
 
 == Screenshots ==
+
 1. Simple, single setting
 2. Visual Editor buttons
 3. Adding code
