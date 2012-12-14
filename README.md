@@ -10,7 +10,7 @@ A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
 
 ## Description ##
 
-1. Uses highlight.js [highlight.js](http://softwaremaniacs.org/soft/highlight/en/).
+1. Uses [highlight.js](http://softwaremaniacs.org/soft/highlight/en/).
 1. 26 themes included.
 1. 55 languages supported (54 from highlight.js + 1 for nginx commands).
 1. Auto-detects language.
