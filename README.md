@@ -1,6 +1,6 @@
 # rtSyntax #
 
-* **Contributors:** [rtcamp] (http://profiles.wordpress.org/rtcamp), [rahul286] (http://profiles.wordpress.org/rahul286), [joshuaabenazer] (http://profiles.wordpress.org/joshuaabenazer),
+* **Contributors:** [rtcamp] (http://profiles.wordpress.org/rtcamp), [rahul286] (http://profiles.wordpress.org/rahul286), [JoshuaAbenazer] (http://profiles.wordpress.org/JoshuaAbenazer),
 
 * **License:** [GPL v2 or later] ( http://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -34,7 +34,7 @@ Manual Installation
 
 #### Need help! ####
 
-Post your problem in [our free support forum](http://rtcamp.com/support/forum/wordpress-rtSyntax/) or wordpress.org forum here. We answer questions everywhere. Including serverfault, stackoverflow, etc.
+Post your problem in [our free support forum](https://rtcamp.com/support/forum/rtsyntax/) or wordpress.org forum here. We answer questions everywhere. Including serverfault, stackoverflow, etc.
 Its just that we are hyperactive on our own forum!
 
 
@@ -48,6 +48,13 @@ Its just that we are hyperactive on our own forum!
 
 ## Changelog ##
 
+#### 1.0.1 ####
+* Added ScreenShots
+
 #### 1.0 ####
 
 * First public release
+
+#### 1.0.1 ####
+
+* Added ScreenShots

@@ -1,9 +1,9 @@
 === rtSyntax ===
-Contributors: rtcamp, rahul286, joshuaabenazer
-Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCETags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
+Contributors: rtcamp, rahul286, JoshuaAbenazer
+Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later (of-course)
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate Link: http://rtcamp.com/donate/
@@ -36,7 +36,7 @@ Manual Installation
 
 = Need help! =
 
-Post your problem in [our free support forum](http://rtcamp.com/support/forum/wordpress-rtSyntax/) or wordpress.org forum here. We answer questions everywhere. Including serverfault, stackoverflow, etc.
+Post your problem in [our free support forum](https://rtcamp.com/support/forum/rtsyntax/) or wordpress.org forum here. We answer questions everywhere. Including serverfault, stackoverflow, etc.
 Its just that we are hyperactive on our own forum!
 
 
@@ -50,6 +50,17 @@ Its just that we are hyperactive on our own forum!
 
 == Changelog ==
 
+= 1.0.1 =
+* Updated Contributors List
+* Added ScreenShots
+
 = 1.0 =
 
 * First public release
+
+== Upgrade Notice ==
+
+= 1.0.1 =
+
+* Updated Contributors List
+* Added ScreenShots
