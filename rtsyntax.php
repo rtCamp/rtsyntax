@@ -113,7 +113,7 @@ class rtSyntax {
     public function enqueue() {
         $options = get_option( 'rtsyntax_options' );
         wp_enqueue_style( 'rtsyntax-' . $options['theme'], plugin_dir_url(__FILE__) . 'css/' . $options['theme'] . '.css' );
-        wp_enqueue_script( 'rtsyntax', plugin_dir_url(__FILE__) . 'js/highlight.js' );
+        wp_enqueue_script( 'rtsyntax', plugin_dir_url(__FILE__) . 'js/highlight.js', array(), null, true );
     }
     
     public function onload() { ?>
