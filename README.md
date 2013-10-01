@@ -48,6 +48,9 @@ Its just that we are hyperactive on our own forum!
 
 ## Changelog ##
 
+#### 1.0.2 ####
+* Fixed WordPress tags
+
 #### 1.0.1 ####
 * Added ScreenShots
 
@@ -55,6 +58,6 @@ Its just that we are hyperactive on our own forum!
 
 * First public release
 
-#### 1.0.1 ####
+#### 1.0.2 ####
 
-* Added ScreenShots
+* Fixed WordPress tags
