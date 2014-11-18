@@ -50,6 +50,9 @@ Its just that we are hyperactive on our own forum!
 
 == Changelog ==
 
+= 1.0.3 =
+* Update compatible upto
+
 = 1.0.2 =
 * Fixed WordPress tags
 
@@ -63,6 +66,6 @@ Its just that we are hyperactive on our own forum!
 
 == Upgrade Notice ==
 
-= 1.0.2 =
+= 1.0.3 =
 
-* Fixed WordPress tags
+* Update compatible upto
