@@ -111,7 +111,13 @@ class rtSyntax {
     }
     
     public function onload() { ?>
-        <script>hljs.initHighlightingOnLoad();</script><?php
+        <script>
+            $( function() {
+                if( typeof hljs === 'object' ) {
+                    hljs.initHighlightingOnLoad();
+                }
+            } );
+        </script><?php
     }
     
     public function convert_pres( $content ){
