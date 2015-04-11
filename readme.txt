@@ -1,10 +1,10 @@
 === rtSyntax ===
-Contributors: rtcamp, rahul286, JoshuaAbenazer
+Contributors: rtcamp, rahul286, JoshuaAbenazer, harishchaudhari
 Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
 Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 1.0.3
-License: GPLv2 or later (of-course)
+Tested up to: 4.1
+Stable tag: 1.0.4
+License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate Link: http://rtcamp.com/donate/
 
@@ -49,6 +49,9 @@ Its just that we are hyperactive on our own forum!
 5. Published code
 
 == Changelog ==
+
+= 1.0.4 =
+* javascript fix by [harishchaudhari](https://profiles.wordpress.org/harishchaudhari/)
 
 = 1.0.3 =
 * Update compatible upto
