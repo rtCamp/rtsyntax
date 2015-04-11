@@ -1,6 +1,6 @@
 # rtSyntax #
 
-* **Contributors:** [rtcamp] (http://profiles.wordpress.org/rtcamp), [rahul286] (http://profiles.wordpress.org/rahul286), [JoshuaAbenazer] (http://profiles.wordpress.org/JoshuaAbenazer),
+* **Contributors:** [rtcamp] (http://profiles.wordpress.org/rtcamp), [rahul286] (http://profiles.wordpress.org/rahul286), [JoshuaAbenazer] (http://profiles.wordpress.org/JoshuaAbenazer), [harishchaudhari] (http://profiles.wordpress.org/harishchaudhari),
 
 * **License:** [GPL v2 or later] ( http://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -47,6 +47,9 @@ Its just that we are hyperactive on our own forum!
 5. Published code
 
 ## Changelog ##
+
+#### 1.0.4 ####
+* javascript fix by [harishchaudhari](https://profiles.wordpress.org/harishchaudhari/)
 
 #### 1.0.3 ####
 * Update compatible upto
