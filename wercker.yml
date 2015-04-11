@@ -1,12 +1,12 @@
 box: ubuntu
 # box: wercker/default
 
-# build:
-#   steps:
-#
-#     - script:
-#         name: placehoder
-#         code: echo "nothing to build"
+build:
+  steps:
+
+    - script:
+        name: placehoder
+        code: echo "nothing to build"
 
 deploy:
   steps:
