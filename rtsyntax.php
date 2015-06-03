@@ -4,7 +4,7 @@ Plugin Name: rtSyntax
 Plugin URI: http://rtcamp.com
 Author: rtCamp
 Author URI: http://rtcamp.com
-Version: 1.0.4
+Version: 1.0.5
 Description: A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
 Contributors: rtcamp, rahul286, JoshuaAbenazer
 Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
