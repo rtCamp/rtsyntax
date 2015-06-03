@@ -112,7 +112,7 @@ class rtSyntax {
 
     public function onload() { ?>
         <script>
-            $( function() {
+            jQuery(function ($) {
                 if( typeof hljs === 'object' ) {
                     hljs.initHighlightingOnLoad();
                 }
