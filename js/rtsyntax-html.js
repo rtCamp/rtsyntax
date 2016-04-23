@@ -11,7 +11,7 @@ var rtSyntax = {
                         if ( '0' != language.value ) {
                             content = '<pre class="'+language.value+'">'+h+'</pre>';
                         } else {
-                            content = '<pre>'+h+'</pre>';
+                            content = '<pre class="no-highlight">'+h+'</pre>';
                         }
                             tinyMCEPopup.editor.execCommand('mceInsertContent', false, content);
                             tinyMCEPopup.close();

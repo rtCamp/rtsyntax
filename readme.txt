@@ -1,14 +1,16 @@
-# rtSyntax #
-
-* **Contributors:** [rtcamp] (http://profiles.wordpress.org/rtcamp), [rahul286] (http://profiles.wordpress.org/rahul286), [JoshuaAbenazer] (http://profiles.wordpress.org/JoshuaAbenazer), [harishchaudhari] (http://profiles.wordpress.org/harishchaudhari),
-
-* **License:** [GPL v2 or later] ( http://www.gnu.org/licenses/gpl-2.0.html)
-
-* **Donate Link:** http://rtcamp.com/donate/
+=== rtSyntax ===
+Contributors: rtcamp, rahul286, JoshuaAbenazer, harishchaudhari
+Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
+Requires at least: 3.0
+Tested up to: 4.4
+Stable tag: 1.0.5
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Donate Link: http://rtcamp.com/donate/
 
 A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
 
-## Description ##
+== Description ==
 
 1. Uses [highlight.js](http://softwaremaniacs.org/soft/highlight/en/).
 1. 26 themes included.
@@ -19,7 +21,7 @@ A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
 1. Optimised code with minimal overheads.
 1. All code on [Github](https://github.com/rtCamp/rtsyntax).
 
-## Installation ##
+== Installation ==
 
 Automatic Installation
 
@@ -32,13 +34,13 @@ Manual Installation
 1. Upload them to `/wp-content/plugins/` directory on your WordPress installation.
 1. Then activate the Plugin from Plugins page.
 
-#### Need help! ####
+= Need help! =
 
 Post your problem in [our free support forum](https://rtcamp.com/support/forum/rtsyntax/) or wordpress.org forum here. We answer questions everywhere. Including serverfault, stackoverflow, etc.
 Its just that we are hyperactive on our own forum!
 
 
-## Screenshots ##
+== Screenshots ==
 
 1. Simple, single setting
 2. Visual Editor buttons
@@ -46,27 +48,30 @@ Its just that we are hyperactive on our own forum!
 4. Code added to visual editor
 5. Published code
 
-## Changelog ##
+== Changelog ==
 
-#### 1.0.5 ####
+= 1.0.5 =
 * Fixed: TypeError: $ is not a function [sagarjadhav](https://profiles.wordpress.org/sagarjadhav/)
 
-#### 1.0.4 ####
+= 1.0.4 =
 * javascript fix by [harishchaudhari](https://profiles.wordpress.org/harishchaudhari/)
 
-#### 1.0.3 ####
+= 1.0.3 =
 * Update compatible upto
 
-#### 1.0.2 ####
+= 1.0.2 =
 * Fixed WordPress tags
 
-#### 1.0.1 ####
+= 1.0.1 =
+* Updated Contributors List
 * Added ScreenShots
 
-#### 1.0 ####
+= 1.0 =
 
 * First public release
 
-#### 1.0.3 ####
+== Upgrade Notice ==
+
+= 1.0.3 =
 
 * Update compatible upto

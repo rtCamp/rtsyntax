@@ -2,54 +2,48 @@
 /*
 Plugin Name: rtSyntax
 Plugin URI: http://rtcamp.com
-Description: Code Highlighter for WordPress using highlight.js.
-Version: 1.0
 Author: rtCamp
 Author URI: http://rtcamp.com
-Contributors: Joshua Abenazer
+Version: 1.0.5
+Description: A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
+Contributors: rtcamp, rahul286, JoshuaAbenazer
+Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
 */
 
-class rtSyntax {  
-    
+class rtSyntax {
+
     public function __construct() {
         register_activation_hook( __FILE__, array( $this, 'initialize_option' ) );
         if ( is_admin() ) {
             add_action( 'admin_init', array( &$this, 'register_settings' ) );
             add_action( 'admin_menu', array( &$this, 'admin' ) );
-            
-            // Don't bother doing this stuff if the current user lacks permissions
-//            if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') )
-//                return;
- 
-            // Add only in Rich Editor mode
-//            if ( get_user_option( 'rich_editing' ) == 'true') {
-                add_filter( 'mce_external_plugins', array( $this, 'rtsyntax_buttons' ) );
-                add_filter( 'mce_buttons', array( $this, 'register_rtsyntax_buttons' ) );
-//            }
+
+            add_filter( 'mce_external_plugins', array( $this, 'rtsyntax_buttons' ) );
+            add_filter( 'mce_buttons', array( $this, 'register_rtsyntax_buttons' ) );
         } else {
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
             add_action( 'wp_head', array( $this, 'onload' ) );
             add_action( 'the_content', array( $this, 'convert_pres' ) );
         }
     }
-    
+
     public function initialize_option() {
         if ( !get_option( 'rtsyntax_options' ) ) {
             $options = array( 'theme' => 'default' );
             add_option( 'rtsyntax_options', $options );
         }
     }
-    
+
     public function register_settings() {
  	add_settings_section( 'rtsyntax-options', __( 'Code Theme', 'rtSyntax' ), array( $this, 'settings_section' ), 'rtsyntax' );
  	add_settings_field( 'rtsyntax-theme', __( 'Theme', 'rtSyntax' ), array( $this, 'settings_field' ), 'rtsyntax', 'rtsyntax-options' );
         register_setting( 'rtsyntax', 'rtsyntax_options' );
     }
-    
+
     public function settings_section(){
     }
-    
-    public function settings_field() { 
+
+    public function settings_field() {
         $options = get_option( 'rtsyntax_options' ); ?>
         <select id="rtsyntax-theme" name="rtsyntax_options[theme]">
             <option value="default"<?php selected( $options['theme'], 'default', true ); ?>><?php _e( 'Default', 'rtSyntax' ); ?></option>
@@ -85,7 +79,7 @@ class rtSyntax {
     public function admin() {
         add_options_page( __( 'rtSyntax', 'rtSyntax' ), __( 'rtSyntax', 'rtSyntax' ), 'manage_options', 'rtsyntax', array( $this, 'admin_page' ) );
     }
-    
+
     public function admin_page() { ?>
         <div class="wrap">
             <h2><?php _e( 'rtSyntax', 'rtSyntax' ); ?></h2>
@@ -97,32 +91,39 @@ class rtSyntax {
             </form>
         </div><?php
     }
-    
+
     public function rtsyntax_buttons( $plugin_array ) {
         $plugin_array['rtsyntax'] = plugin_dir_url(__FILE__).'js/rtsyntax.js';
         $plugin_array['rtcode'] = plugin_dir_url(__FILE__).'js/rtsyntax.js';
         $plugin_array['rtkey'] = plugin_dir_url(__FILE__).'js/rtsyntax.js';
         return $plugin_array;
     }
-    
+
     public function register_rtsyntax_buttons( $buttons ) {
         array_push( $buttons, "separator", "rtsyntax", "rtcode", "rtkey", "code" );
         return $buttons;
     }
-    
+
     public function enqueue() {
         $options = get_option( 'rtsyntax_options' );
         wp_enqueue_style( 'rtsyntax-' . $options['theme'], plugin_dir_url(__FILE__) . 'css/' . $options['theme'] . '.css' );
-        wp_enqueue_script( 'rtsyntax', plugin_dir_url(__FILE__) . 'js/highlight.js' );
+        wp_enqueue_script( 'rtsyntax', plugin_dir_url(__FILE__) . 'js/highlight.js', array(), null, true );
     }
-    
+
     public function onload() { ?>
-        <script>hljs.initHighlightingOnLoad();</script><?php
+        <script>
+            jQuery(function ($) {
+                if( typeof hljs === 'object' ) {
+                    hljs.initHighlightingOnLoad();
+                }
+            } );
+        </script><?php
     }
-    
+
     public function convert_pres( $content ){
+        $content = str_replace( '<pre>', '<pre class="no-highlight">', $content );
         return preg_replace( '/<pre(.*)>(.*)<\/pre>/isU', '<pre><code$1>$2</code></pre>', $content );
     }
-    
-}  
+
+}
 $rtSyntax = new rtSyntax();
