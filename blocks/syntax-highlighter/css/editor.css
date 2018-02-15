@@ -1,0 +1,13 @@
+.code-txtarea {
+    resize: none;
+    width: 100%;
+}
+
+.rtsyntax-header {
+    text-align: center;
+}
+
+.language-list {
+    width: 100%;
+    text-align: center;
+}
