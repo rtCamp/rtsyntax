@@ -1,17 +1,24 @@
 <?php
-/*
-Plugin Name: rtSyntax
-Plugin URI: http://rtcamp.com
-Author: rtCamp
-Author URI: http://rtcamp.com
-Version: 1.0.5
-Description: A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
-Contributors: rtcamp, rahul286, JoshuaAbenazer
-Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
-*/
+/**
+ * Plugin Name: rtSyntax
+ * Plugin URI: http://rtcamp.com
+ * Author: rtCamp
+ * Author URI: http://rtcamp.com
+ * Version: 1.0.5
+ * Description: A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress. Tested upto 4.9.4
+ * Contributors: rtcamp, rahul286, JoshuaAbenazer
+ * Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
+ */
 
+
+/**
+ * Class rtSyntax
+ */
 class rtSyntax {
 
+	/**
+	 * rtSyntax constructor.
+	 */
     public function __construct() {
         register_activation_hook( __FILE__, array( $this, 'initialize_option' ) );
         if ( is_admin() ) {
@@ -27,6 +34,9 @@ class rtSyntax {
         }
     }
 
+	/**
+	 * Initialize plugin option
+	 */
     public function initialize_option() {
         if ( !get_option( 'rtsyntax_options' ) ) {
             $options = array( 'theme' => 'default' );
@@ -34,23 +44,34 @@ class rtSyntax {
         }
     }
 
+	/**
+	 * Register settings in settings section
+	 */
     public function register_settings() {
  	add_settings_section( 'rtsyntax-options', __( 'Code Theme', 'rtSyntax' ), array( $this, 'settings_section' ), 'rtsyntax' );
  	add_settings_field( 'rtsyntax-theme', __( 'Theme', 'rtSyntax' ), array( $this, 'settings_field' ), 'rtsyntax', 'rtsyntax-options' );
         register_setting( 'rtsyntax', 'rtsyntax_options' );
     }
 
+
+	/**
+	 *
+	 */
     public function settings_section(){
     }
 
+	/**
+	 * List of available themes
+	 */
     public function settings_field() {
         $options = get_option( 'rtsyntax_options' ); ?>
-        <select id="rtsyntax-theme" name="rtsyntax_options[theme]">
+        <select title="Select theme" id="rtsyntax-theme" name="rtsyntax_options[theme]">
             <option value="default"<?php selected( $options['theme'], 'default', true ); ?>><?php _e( 'Default', 'rtSyntax' ); ?></option>
             <option value="arta"<?php selected( $options['theme'], 'arta', true ); ?>><?php _e( 'Arta', 'rtSyntax' ); ?></option>
             <option value="ascetic"<?php selected( $options['theme'], 'ascetic', true ); ?>><?php _e( 'Ascetic', 'rtSyntax' ); ?></option>
             <option value="brown_paper"<?php selected( $options['theme'], 'brown_paper', true ); ?>><?php _e( 'Brown Paper', 'rtSyntax' ); ?></option>
             <option value="dark"<?php selected( $options['theme'], 'dark', true ); ?>><?php _e( 'Dark', 'rtSyntax' ); ?></option>
+			<option value="dracula"<?php selected( $options['theme'], 'dracula', true ); ?>><?php _e( 'Dracula', 'rtSyntax' ); ?></option>
             <option value="far"<?php selected( $options['theme'], 'far', true ); ?>><?php _e( 'FAR', 'rtSyntax' ); ?></option>
             <option value="github"<?php selected( $options['theme'], 'github', true ); ?>><?php _e( 'GitHub', 'rtSyntax' ); ?></option>
             <option value="googlecode"<?php selected( $options['theme'], 'googlecode', true ); ?>><?php _e( 'Google Code', 'rtSyntax' ); ?></option>
@@ -76,10 +97,17 @@ class rtSyntax {
     }
 
 
+	/**
+	 * Add settings page on admin side
+	 */
     public function admin() {
         add_options_page( __( 'rtSyntax', 'rtSyntax' ), __( 'rtSyntax', 'rtSyntax' ), 'manage_options', 'rtsyntax', array( $this, 'admin_page' ) );
     }
 
+
+	/**
+	 * Add section for registered settings
+	 */
     public function admin_page() { ?>
         <div class="wrap">
             <h2><?php _e( 'rtSyntax', 'rtSyntax' ); ?></h2>
@@ -92,6 +120,14 @@ class rtSyntax {
         </div><?php
     }
 
+
+	/**
+	 * @param $plugin_array
+	 *
+	 * @return mixed
+	 *
+	 * Register buttons to display on tinyMCE editor
+	 */
     public function rtsyntax_buttons( $plugin_array ) {
         $plugin_array['rtsyntax'] = plugin_dir_url(__FILE__).'js/rtsyntax.js';
         $plugin_array['rtcode'] = plugin_dir_url(__FILE__).'js/rtsyntax.js';
@@ -99,20 +135,34 @@ class rtSyntax {
         return $plugin_array;
     }
 
+
+	/**
+	 * @param $buttons
+	 *
+	 * @return mixed
+	 *
+	 * Add registered buttons on tinyMCE editor
+	 */
     public function register_rtsyntax_buttons( $buttons ) {
         array_push( $buttons, "separator", "rtsyntax", "rtcode", "rtkey", "code" );
         return $buttons;
     }
 
+	/**
+	 * Enqueue scripts
+	 */
     public function enqueue() {
         $options = get_option( 'rtsyntax_options' );
-        wp_enqueue_style( 'rtsyntax-' . $options['theme'], plugin_dir_url(__FILE__) . 'css/' . $options['theme'] . '.css' );
-        wp_enqueue_script( 'rtsyntax', plugin_dir_url(__FILE__) . 'js/highlight.js', array(), null, true );
+        wp_enqueue_style( 'rtsyntax-' . $options['theme'], plugin_dir_url(__FILE__) . '/gutenberg/css/highlight/' . $options['theme'] . '.css' );
+        wp_enqueue_script( 'rtsyntax', plugin_dir_url(__FILE__) . '/gutenberg/js/highlight.min.js', array(), null, true );
     }
 
+	/**
+	 * Initialize highlight library
+	 */
     public function onload() { ?>
         <script>
-            jQuery(function ($) {
+            jQuery(function () {
                 if( typeof hljs === 'object' ) {
                     hljs.initHighlightingOnLoad();
                 }
@@ -120,6 +170,11 @@ class rtSyntax {
         </script><?php
     }
 
+	/**
+	 * @param $content
+	 *
+	 * @return null|string|string[]
+	 */
     public function convert_pres( $content ){
         $content = str_replace( '<pre>', '<pre class="no-highlight">', $content );
         return preg_replace( '/<pre(.*)>(.*)<\/pre>/isU', '<pre><code$1>$2</code></pre>', $content );
@@ -127,3 +182,9 @@ class rtSyntax {
 
 }
 $rtSyntax = new rtSyntax();
+
+
+/**
+ * for gutenberg
+ */
+require 'gutenberg/index.php';

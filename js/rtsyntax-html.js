@@ -23,7 +23,7 @@ var rtSyntax = {
                         el = document.getElementById('content');
 
                         el.style.width  = (vp.w - 20) + 'px';
-                        el.style.height = (vp.h - 80) + 'px';
+                        el.style.height = (vp.h - 85) + 'px';
                 }
         };
 
