@@ -44,7 +44,6 @@ class Edit extends Component {
 		});
 	}
 
-
 	// Prevent default tab behaviour in code textarea
 	handleTabKey(e) {
 
@@ -66,7 +65,6 @@ class Edit extends Component {
 		this.changeContent(e);
 
 	}
-
 
 	// Change code language to highlight
 	changeLanguage(e) {
@@ -90,7 +88,6 @@ class Edit extends Component {
 		if (typeof(Worker) !== "undefined" && worker === null) {
 			worker = new Worker(highlight_obj.path+'/js/highlight_worker.build.js');
 		}
-
 
 		if (worker !== null) {
 
@@ -174,7 +171,6 @@ class Edit extends Component {
 
 	}
 
-
 	// Save content when content is changed in code text-area
 	changeContent(e) {
 
@@ -200,7 +196,6 @@ class Edit extends Component {
 		);
 
 	}
-
 
 	// Render the output of edit method
 	render() {
@@ -262,7 +257,6 @@ class Edit extends Component {
 			)
 		];
 	}
-
 
 	componentWillUnmount() {
 

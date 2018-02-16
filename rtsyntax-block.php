@@ -5,13 +5,11 @@
 
 defined( 'ABSPATH' ) || exit;
 
-
 /**
  * action to load required css and js files for gutenberg editor
  */
 add_action(
 	'enqueue_block_editor_assets',
-
 	/**
 	 * enqueues required js and css
 	 */
@@ -28,7 +26,6 @@ add_action(
 			[ 'jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'moment' ]
 		);
 
-
 		/**
 		 * Custom style css file for all custom blocks
 		 */
@@ -38,7 +35,6 @@ add_action(
 			[ 'wp-edit-blocks' ]
 		);
 
-
 		/**
 		 * Default theme file for code editor
 		 */
@@ -46,7 +42,6 @@ add_action(
 			'highlight',
 			plugins_url( '/css/themes/' . $options['theme'] . '.css', __FILE__ )
 		);
-
 
 		/**
 		 * List of themes available for user to select
