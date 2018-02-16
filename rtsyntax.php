@@ -10,7 +10,6 @@
  * Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
  */
 
-
 /**
  * Class rtSyntax
  */
@@ -185,11 +184,15 @@ $rtSyntax = new rtSyntax();
 
 
 /**
- * for gutenberg
+ * check if this is_plugin_active function is already avaiable or not
  */
+if( ! function_exists( 'is_plugin_active' ) ) {
+	include_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
 
-// if ( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
-    require 'rtsyntax-block.php';
-// }
-
-	?>
+/**
+ * if gutenberg plugin is activate then register the blocks
+ */
+if( is_plugin_active( 'gutenberg/gutenberg.php' ) ){
+	require 'rtsyntax-block.php';
+}
