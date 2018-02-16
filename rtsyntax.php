@@ -108,17 +108,17 @@ class rtSyntax {
 	/**
 	 * Add section for registered settings
 	 */
-    public function admin_page() { ?>
-        <div class="wrap">
-            <h2><?php _e( 'rtSyntax', 'rtSyntax' ); ?></h2>
-            <form method="post" action="options.php">
-                <?php settings_fields( 'rtsyntax' ); ?>
-                <?php do_settings_sections( 'rtsyntax' ); ?>
-                <?php do_settings_fields( 'rtsyntax', 'rtsyntax-theme' ); ?>
-                <?php submit_button(); ?>
-            </form>
-        </div><?php
-    }
+	public function admin_page() { ?>
+		<div class="wrap">
+		<h2><?php _e( 'rtSyntax', 'rtSyntax' ); ?></h2>
+		<form method="post" action="options.php">
+			<?php settings_fields( 'rtsyntax' ); ?>
+			<?php do_settings_sections( 'rtsyntax' ); ?>
+			<?php do_settings_fields( 'rtsyntax', 'rtsyntax-theme' ); ?>
+			<?php submit_button(); ?>
+		</form>
+		</div><?php
+	}
 
 
 	/**
@@ -191,3 +191,5 @@ $rtSyntax = new rtSyntax();
 // if ( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
     require 'rtsyntax-block.php';
 // }
+
+	?>

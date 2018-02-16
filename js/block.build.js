@@ -94,7 +94,7 @@ registerBlockType('rtsyntax/rtsyntax-block', {
 		// to store current language.
 		language: {
 			type: 'string',
-			default: 'java'
+			default: 'php'
 		},
 
 		// to store only text content
@@ -112,7 +112,7 @@ registerBlockType('rtsyntax/rtsyntax-block', {
 		// to store and fetch full html content
 		html_content: {
 			source: 'children',
-			selector: 'pre'
+			selector: '.pre'
 		}
 	},
 
@@ -174,6 +174,7 @@ var Edit = function (_Component) {
 		_this.changeLanguage = _this.changeLanguage.bind(_this);
 		_this.setAreaHeight = _this.setAreaHeight.bind(_this);
 		_this.changeContent = _this.changeContent.bind(_this);
+		_this.updateContent = _this.updateContent.bind(_this);
 		_this.handleTabKey = _this.handleTabKey.bind(_this);
 		_this.getHighlight = _this.getHighlight.bind(_this);
 		return _this;
@@ -183,6 +184,14 @@ var Edit = function (_Component) {
 		key: 'setAreaHeight',
 		value: function setAreaHeight(e) {
 			this.props.setAttributes({
+				areaHeight: e.target.scrollHeight + 'px'
+			});
+		}
+	}, {
+		key: 'changeContent',
+		value: function changeContent(e) {
+			this.props.setAttributes({
+				content: e.target.value,
 				areaHeight: e.target.scrollHeight + 'px'
 			});
 		}
@@ -208,7 +217,11 @@ var Edit = function (_Component) {
 			textarea.selectionStart = newCaretPosition;
 			textarea.selectionEnd = newCaretPosition;
 			textarea.focus();
-			this.changeContent(e);
+
+			this.props.setAttributes({
+				content: e.target.value
+			});
+			// this.changeContent(e);
 		}
 
 		// Change code language to highlight
@@ -220,8 +233,6 @@ var Edit = function (_Component) {
 			this.props.setAttributes({
 				language: e
 			});
-
-			this.getHighlight();
 		}
 
 		// get highlighted code using highlight.js
@@ -232,7 +243,7 @@ var Edit = function (_Component) {
 			var _this2 = this;
 
 			var val = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-			var cb = arguments[1];
+			var cb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
 			var _props = this.props,
 			    attributes = _props.attributes,
 			    setAttributes = _props.setAttributes;
@@ -246,6 +257,7 @@ var Edit = function (_Component) {
 
 			if (worker !== null) {
 
+				// console.log('posting msg: '+attributes.language);
 				worker.postMessage({
 					language: attributes.language,
 					content: content
@@ -253,20 +265,24 @@ var Edit = function (_Component) {
 
 				worker.onmessage = function (event) {
 
-					content = event.data.value;
+					if (event.data.value.length !== 0) {
+						content = wp.element.createElement('div', {
+							className: 'hljs',
+							dangerouslySetInnerHTML: {
+								__html: event.data.value
+							}
+						});
 
-					content = wp.element.createElement('code', {
-						className: 'hljs',
-						dangerouslySetInnerHTML: {
-							__html: content
-						}
-					});
+						content = [content];
+					} else {
+						content = [];
+					}
 
 					if (val !== null) {
 						cb(val, content);
 					} else {
 						setAttributes({
-							html_content: content
+							html_content: [content]
 						});
 					}
 
@@ -294,20 +310,24 @@ var Edit = function (_Component) {
 				worker = null;
 			} else {
 
-				content = event.data.value;
+				if (event.data.value.length !== 0) {
+					content = wp.element.createElement('code', {
+						className: 'hljs',
+						dangerouslySetInnerHTML: {
+							__html: event.data.value
+						}
+					});
 
-				content = wp.element.createElement('code', {
-					className: 'hljs',
-					dangerouslySetInnerHTML: {
-						__html: content
-					}
-				});
+					content = [content];
+				} else {
+					content = [];
+				}
 
 				if (val) {
 					cb(val, content);
 				} else {
 					setAttributes({
-						html_content: content
+						html_content: [content]
 					});
 				}
 			}
@@ -316,22 +336,14 @@ var Edit = function (_Component) {
 		// Save content when content is changed in code text-area
 
 	}, {
-		key: 'changeContent',
-		value: function changeContent(e) {
-
-			console.log('content');
-			console.log(e.target.value);
-
+		key: 'updateContent',
+		value: function updateContent() {
 			var _props2 = this.props,
 			    setAttributes = _props2.setAttributes,
 			    attributes = _props2.attributes;
 
 
-			if (attributes.content === e.target.value) {
-				return;
-			}
-
-			this.getHighlight(e.target.value, function (value, content) {
+			this.getHighlight(attributes.content, function (value, content) {
 				setAttributes({
 					content: value,
 					html_content: content
@@ -365,13 +377,18 @@ var Edit = function (_Component) {
 				state.updateMessage
 			) : '';
 
+			var showContent = attributes.html_content !== undefined && attributes.html_content.length !== undefined && attributes.html_content.length > 0;
+
 			// return content
 			return [
 
 			// Textarea to edit code, only show when in focus {__('Selected Language','rtSyntax')}: {attributes.language}
 			isSelected && wp.element.createElement(
 				'div',
-				null,
+				{
+					tabIndex: '1',
+					onBlur: this.updateContent
+				},
 				wp.element.createElement(SelectControl, {
 					label: __('Language', 'rtSyntax'),
 					value: attributes.language,
@@ -381,7 +398,8 @@ var Edit = function (_Component) {
 				wp.element.createElement(
 					'textarea',
 					{
-						onBlur: this.changeContent,
+						onFocus: this.setAreaHeight,
+						onChange: this.changeContent,
 						onKeyDown: this.handleTabKey,
 						className: 'form-control',
 						style: { width: '100%', height: this.props.attributes.areaHeight },
@@ -398,8 +416,8 @@ var Edit = function (_Component) {
 				wp.element.createElement(
 					'pre',
 					null,
-					updateMessage,
-					attributes.html_content.length !== undefined ? attributes.html_content : 'rtSyntax: Click here to add code...'
+					showContent ? updateMessage : '',
+					showContent ? attributes.html_content : 'Click here to add code ....'
 				)
 			)];
 		}
@@ -456,11 +474,11 @@ var Save = function (_Component) {
 
 
 	_createClass(Save, [{
-		key: "render",
+		key: 'render',
 		value: function render() {
 			return wp.element.createElement(
-				"pre",
-				null,
+				'pre',
+				{ className: 'pre' },
 				this.props.attributes.html_content
 			);
 		}
