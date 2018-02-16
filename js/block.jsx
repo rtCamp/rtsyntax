@@ -1,7 +1,7 @@
 // Edit and Save class, located in /block directory
 
-import Edit from "./block/Edit.jsx";
-import Save from "./block/Save.jsx";
+import Edit from "./Edit.jsx";
+import Save from "./Save.jsx";
 
 
 // Initializing required components
@@ -11,9 +11,9 @@ const {__} = wp.i18n;
 
 // Registering highlighter block
 registerBlockType(
-	'st-syntax-highlighter/st-syntax-highlighter',
+	'rtsyntax/rtsyntax-block',
 	{
-		title      : __('ST Syntax Highlighter', 'rtSyntax'),
+		title      : __('rtSyntax', 'rtSyntax'),
 		category   : 'formatting',
 		icon       : 'editor-code',
 		keywords   : [__('highlight', 'rtSyntax'), __('code', 'rtSyntax')],

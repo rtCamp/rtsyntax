@@ -24,7 +24,7 @@ add_action(
 		 */
 		wp_enqueue_script(
 			'block.build.js',
-			plugins_url( '/block.build.js', __FILE__ ),
+			plugins_url( '/js/block.build.js', __FILE__ ),
 			[ 'jquery', 'wp-blocks', 'wp-i18n', 'wp-element', 'moment' ]
 		);
 
@@ -44,7 +44,7 @@ add_action(
 		 */
 		wp_enqueue_style(
 			'highlight',
-			plugins_url( '/css/highlight/' . $options[ 'theme' ] . '.css', __FILE__ )
+			plugins_url( '/css/themes/' . $options['theme'] . '.css', __FILE__ )
 		);
 
 
@@ -56,8 +56,8 @@ add_action(
 			'block.build.js',
 			'highlight_obj',
 			[
-				'path'   => plugins_url( 'css/highlight/', __FILE__ ),
-				'debug' => WP_DEBUG
+				'path'  => plugin_dir_url( __FILE__ ),
+				'debug' => WP_DEBUG,
 			]
 		);
 

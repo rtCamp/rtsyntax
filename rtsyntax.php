@@ -153,8 +153,8 @@ class rtSyntax {
 	 */
     public function enqueue() {
         $options = get_option( 'rtsyntax_options' );
-        wp_enqueue_style( 'rtsyntax-' . $options['theme'], plugin_dir_url(__FILE__) . '/gutenberg/css/highlight/' . $options['theme'] . '.css' );
-        wp_enqueue_script( 'rtsyntax', plugin_dir_url(__FILE__) . '/gutenberg/js/highlight.min.js', array(), null, true );
+        wp_enqueue_style( 'rtsyntax-' . $options['theme'], plugin_dir_url(__FILE__) . '/css/themes/' . $options['theme'] . '.css' );
+        wp_enqueue_script( 'rtsyntax', plugin_dir_url(__FILE__) . '/js/highlight.js', array(), null, true );
     }
 
 	/**
@@ -187,4 +187,7 @@ $rtSyntax = new rtSyntax();
 /**
  * for gutenberg
  */
-require 'gutenberg/index.php';
+
+// if ( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
+    require 'rtsyntax-block.php';
+// }

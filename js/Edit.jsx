@@ -1,5 +1,6 @@
 // library to highlight the code
-let hljs = require('../js/highlight.min.js');
+let hljs = require('./highlight.js');
+
 
 // Initialize the worker
 let worker = null;
@@ -36,7 +37,6 @@ class Edit extends Component {
 		this.handleTabKey = this.handleTabKey.bind(this);
 		this.getHighlight = this.getHighlight.bind(this);
 	}
-
 
 	setAreaHeight(e) {
 		this.props.setAttributes({
@@ -82,13 +82,13 @@ class Edit extends Component {
 	}
 
 	// get highlighted code using highlight.js
-	getHighlight(val, cb) {
+	getHighlight(val = null, cb) {
 		const {attributes, setAttributes} = this.props;
 
-		let content = val ? val : attributes.content;
+		let content = val !== null ? val : attributes.content;
 
 		if (typeof(Worker) !== "undefined" && worker === null) {
-			worker = new Worker(highlight_obj.path + '/../../../js/highlight_worker.build.js');
+			worker = new Worker(highlight_obj.path+'/js/highlight_worker.build.js');
 		}
 
 
@@ -100,7 +100,6 @@ class Edit extends Component {
 			});
 
 			worker.onmessage = (event) => {
-				console.log(event.data.value);
 
 				content = event.data.value;
 
@@ -111,7 +110,7 @@ class Edit extends Component {
 					}}
 				/>;
 
-				if (val) {
+				if (val !== null) {
 					cb(val, content);
 				} else {
 					setAttributes(
@@ -179,6 +178,9 @@ class Edit extends Component {
 	// Save content when content is changed in code text-area
 	changeContent(e) {
 
+		console.log('content');
+		console.log(e.target.value);
+
 		const {setAttributes, attributes} = this.props;
 
 		if (attributes.content === e.target.value) {
@@ -206,6 +208,7 @@ class Edit extends Component {
 		const {attributes, isSelected} = this.props;
 		const {state} = this;
 
+
 		// list of languages from highlight.js
 		let languages = hljs.listLanguages();
 		languages = languages.map(
@@ -223,36 +226,28 @@ class Edit extends Component {
 			</div>
 		) : '';
 
-
 		// return content
 		return [
 
 			// Textarea to edit code, only show when in focus {__('Selected Language','rtSyntax')}: {attributes.language}
 			isSelected && (
 				<div>
-					<div className='row'>
-						<div className='col-md-12'>
-							<SelectControl
-								label={__('Language', 'rtSyntax')}
-								value={attributes.language}
-								options={languages}
-								onChange={this.changeLanguage}
-							/>
-						</div>
-					</div>
-					<div className='row'>
-						<div className='col-md-12'>
-							<textarea
-								onBlur={this.changeContent}
-								onKeyDown={this.handleTabKey}
-								className={'form-control'}
-								style={{width: '100%', height: this.props.attributes.areaHeight}}
-								placeholder={__("Enter code here", 'rtSyntax') + " ... "}
-							>
-								{attributes.content}
-							</textarea>
-						</div>
-					</div>
+					<SelectControl
+						label={__('Language', 'rtSyntax')}
+						value={attributes.language}
+						options={languages}
+						onChange={this.changeLanguage}
+					/>
+					<textarea
+						onBlur={this.changeContent}
+						onKeyDown={this.handleTabKey}
+						className={'form-control'}
+						style={{width: '100%', height: this.props.attributes.areaHeight}}
+						placeholder={__("Enter code here", 'rtSyntax') + " ... "}
+					>
+						{attributes.content}
+					</textarea>
+
 				</div>
 			),
 
@@ -261,7 +256,7 @@ class Edit extends Component {
 				<div>
 					<pre>
 						{updateMessage}
-						{attributes.html_content}
+						{attributes.html_content.length!==undefined?attributes.html_content:'rtSyntax: Click here to add code...'}
 					</pre>
 				</div>
 			)

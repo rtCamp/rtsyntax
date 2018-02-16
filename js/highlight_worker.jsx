@@ -1,4 +1,4 @@
-let hljs = require('./highlight.min');
+let hljs = require('./highlight');
 
 // console.log(hljs);
 

@@ -2,9 +2,9 @@ const path = require('path');
 
 module.exports = [
 	{
-		entry : './block.jsx',
+		entry : './js/block.jsx',
 		output: {
-			path    : __dirname,
+			path    : path.resolve(__dirname,'js'),
 			filename: 'block.build.js',
 		},
 		module: {
