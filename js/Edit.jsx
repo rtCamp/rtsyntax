@@ -237,7 +237,7 @@ class Edit extends Component {
 						onBlur={this.changeContent}
 						onKeyDown={this.handleTabKey}
 						className={'form-control'}
-						style={{width: '100%', height: this.props.attributes.areaHeight}}
+						style={{width: '100%', height: '20em'}}
 						placeholder={__("Enter code here", 'rtSyntax') + " ... "}
 					>
 						{attributes.content}
