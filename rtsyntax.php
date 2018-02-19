@@ -161,6 +161,7 @@ class RtSyntax {
 		$options = get_option( 'rtsyntax_options' );
 		wp_enqueue_style( 'rtsyntax-' . $options['theme'], plugin_dir_url( __FILE__ ) . '/css/themes/' . $options['theme'] . '.css' );
 		wp_enqueue_script( 'rtsyntax', plugin_dir_url( __FILE__ ) . '/js/highlight.js', array(), null, true );
+//		wp_enqueue_script( 'rtsyntax123', plugin_dir_url( __FILE__ ) . '/js/test.js', array(), null, true );
 	}
 
 	/**
@@ -170,9 +171,13 @@ class RtSyntax {
 	?>
 		<script>
 			jQuery(function () {
-				if( typeof hljs === 'object' ) {
-					hljs.initHighlightingOnLoad();
-				}
+				var $ = jQuery;
+				$('pre code').each(function(i, block) {
+				    if(block.classList.contains('highlight-block')){
+				        return;
+                    }
+                    hljs.highlightBlock(block);
+				});
 			} );
 		</script>
 		<?php
@@ -187,7 +192,7 @@ class RtSyntax {
 	 */
 	public function convert_pres( $content ) {
 		$content = str_replace( '<pre>', '<pre class="no-highlight">', $content );
-		return preg_replace( '/<pre(.*)>(.*)<\/pre>/isU', '<pre><code$1>$2</code></pre>', $content );
+		return preg_replace( '/<pre(.*)>(.*)<\/pre>/isU', '<pre><code $1>$2</code></pre>', $content );
 	}
 
 }

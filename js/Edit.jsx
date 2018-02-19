@@ -166,7 +166,7 @@ class Edit extends Component {
 		} else {
 
 			if( event.data.value.length !== 0 ){
-				content = <code
+				content = <div
 					className={'hljs'}
 					dangerouslySetInnerHTML={{
 						__html: event.data.value
@@ -267,12 +267,12 @@ class Edit extends Component {
 
 			// Show actual highlighted code when not in focus
 			!isSelected && (
-				<div>
-					<pre>
+				<pre>
+					<code>
 						{showContent ? updateMessage : ''}
 						{showContent ? attributes.html_content : 'Click here to add code ....'}
-					</pre>
-				</div>
+					</code>
+				</pre>
 			)
 		];
 	}

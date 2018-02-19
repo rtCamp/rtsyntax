@@ -112,7 +112,7 @@ registerBlockType('rtsyntax/rtsyntax-block', {
 		// to store and fetch full html content
 		html_content: {
 			source: 'children',
-			selector: '.pre'
+			selector: 'pre.highlight-block'
 		}
 	},
 
@@ -311,7 +311,7 @@ var Edit = function (_Component) {
 			} else {
 
 				if (event.data.value.length !== 0) {
-					content = wp.element.createElement('code', {
+					content = wp.element.createElement('div', {
 						className: 'hljs',
 						dangerouslySetInnerHTML: {
 							__html: event.data.value
@@ -411,10 +411,10 @@ var Edit = function (_Component) {
 
 			// Show actual highlighted code when not in focus
 			!isSelected && wp.element.createElement(
-				'div',
+				'pre',
 				null,
 				wp.element.createElement(
-					'pre',
+					'code',
 					null,
 					showContent ? updateMessage : '',
 					showContent ? attributes.html_content : 'Click here to add code ....'
@@ -478,7 +478,7 @@ var Save = function (_Component) {
 		value: function render() {
 			return wp.element.createElement(
 				'pre',
-				{ className: 'pre' },
+				{ className: 'highlight-block' },
 				this.props.attributes.html_content
 			);
 		}

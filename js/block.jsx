@@ -42,7 +42,7 @@ registerBlockType(
 			// to store and fetch full html content
 			html_content: {
 				source  : 'children',
-				selector: '.pre',
+				selector: 'pre.highlight-block',
 			},
 		},
 
