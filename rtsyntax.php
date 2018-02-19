@@ -86,12 +86,34 @@ class RtSyntax {
 		}
 		?>
 		<select title="Select theme" id="rtsyntax-theme" name="rtsyntax_options[theme]">
+            <option value="default"<?php selected( $options['theme'], 'default', true ); ?>><?php _e( 'Default', 'rtSyntax' ); ?></option>
+            <option value="arta"<?php selected( $options['theme'], 'arta', true ); ?>><?php _e( 'Arta', 'rtSyntax' ); ?></option>
+            <option value="ascetic"<?php selected( $options['theme'], 'ascetic', true ); ?>><?php _e( 'Ascetic', 'rtSyntax' ); ?></option>
+            <option value="brown_paper"<?php selected( $options['theme'], 'brown-paper', true ); ?>><?php _e( 'Brown Paper', 'rtSyntax' ); ?></option>
+            <option value="dark"<?php selected( $options['theme'], 'dark', true ); ?>><?php _e( 'Dark', 'rtSyntax' ); ?></option>
+            <option value="far"<?php selected( $options['theme'], 'far', true ); ?>><?php _e( 'FAR', 'rtSyntax' ); ?></option>
+            <option value="github"<?php selected( $options['theme'], 'github', true ); ?>><?php _e( 'GitHub', 'rtSyntax' ); ?></option>
+            <option value="googlecode"<?php selected( $options['theme'], 'googlecode', true ); ?>><?php _e( 'Google Code', 'rtSyntax' ); ?></option>
+            <option value="idea"<?php selected( $options['theme'], 'idea', true ); ?>><?php _e( 'IDEA', 'rtSyntax' ); ?></option>
+            <option value="ir_black"<?php selected( $options['theme'], 'ir-black', true ); ?>><?php _e( 'IR Black', 'rtSyntax' ); ?></option>
+            <option value="magula"<?php selected( $options['theme'], 'magula', true ); ?>><?php _e( 'Magula', 'rtSyntax' ); ?></option>
+            <option value="monokai"<?php selected( $options['theme'], 'monokai', true ); ?>><?php _e( 'Monokai', 'rtSyntax' ); ?></option>
+            <option value="pojoaque"<?php selected( $options['theme'], 'pojoaque', true ); ?>><?php _e( 'Pojoaque', 'rtSyntax' ); ?></option>
+            <option value="rainbow"<?php selected( $options['theme'], 'rainbow', true ); ?>><?php _e( 'Rainbow', 'rtSyntax' ); ?></option>
+            <option value="school_book"<?php selected( $options['theme'], 'school-book', true ); ?>><?php _e( 'School Book', 'rtSyntax' ); ?></option>
+            <option value="solarized_dark"<?php selected( $options['theme'], 'solarized-dark', true ); ?>><?php _e( 'Solarized Dark', 'rtSyntax' ); ?></option>
+            <option value="solarized_light"<?php selected( $options['theme'], 'solarized-light', true ); ?>><?php _e( 'Solarized Light', 'rtSyntax' ); ?></option>
+            <option value="sunburst"<?php selected( $options['theme'], 'sunburst', true ); ?>><?php _e( 'Sunburst', 'rtSyntax' ); ?></option>
+            <option value="tomorrow-night-blue"<?php selected( $options['theme'], 'tomorrow-night-blue', true ); ?>><?php _e( 'Tomorrow Night Blue', 'rtSyntax' ); ?></option>
+            <option value="tomorrow-night-bright"<?php selected( $options['theme'], 'tomorrow-night-bright', true ); ?>><?php _e( 'Tomorrow Night Bright', 'rtSyntax' ); ?></option>
+            <option value="tomorrow-night-eighties"<?php selected( $options['theme'], 'tomorrow-night-eighties', true ); ?>><?php _e( 'Tomorrow Night Eighties', 'rtSyntax' ); ?></option>
+            <option value="tomorrow-night"<?php selected( $options['theme'], 'tomorrow-night', true ); ?>><?php _e( 'Tomorrow Night', 'rtSyntax' ); ?></option>
+            <option value="tomorrow"<?php selected( $options['theme'], 'tomorrow', true ); ?>><?php _e( 'Tomorrow', 'rtSyntax' ); ?></option>
+            <option value="vs"<?php selected( $options['theme'], 'vs', true ); ?>><?php _e( 'Visual Studio', 'rtSyntax' ); ?></option>
+            <option value="xcode"<?php selected( $options['theme'], 'xcode', true ); ?>><?php _e( 'XCode', 'rtSyntax' ); ?></option>
+            <option value="zenburn"<?php selected( $options['theme'], 'zenburn', true ); ?>><?php _e( 'Zenburn', 'rtSyntax' ); ?></option>
+        </select>
 		<?php
-		foreach ( $themes as $theme ) {
-		?>
-			<option value="<?php echo esc_attr( $theme ); ?>"<?php selected( $options['theme'], $theme, true ); ?>><?php echo esc_html( $theme, 'rtSyntax' ); ?></option>
-		<?php
-		}
 	}
 
 	/**
