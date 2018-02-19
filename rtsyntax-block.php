@@ -1,17 +1,19 @@
 <?php
 /**
  * This file must be required in main plugin file
+ *
+ * @package rtsyntax
  */
 
 defined( 'ABSPATH' ) || exit;
 
 /**
- * action to load required css and js files for gutenberg editor
+ * Action to load required css and js files for gutenberg editor
  */
 add_action(
 	'enqueue_block_editor_assets',
 	/**
-	 * enqueues required js and css
+	 * Enqueues required js and css
 	 */
 	function () {
 
