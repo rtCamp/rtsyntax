@@ -107,17 +107,17 @@ class rtSyntax {
 	/**
 	 * Add section for registered settings
 	 */
-    public function admin_page() { ?>
-        <div class="wrap">
-            <h2><?php _e( 'rtSyntax', 'rtSyntax' ); ?></h2>
-            <form method="post" action="options.php">
-                <?php settings_fields( 'rtsyntax' ); ?>
-                <?php do_settings_sections( 'rtsyntax' ); ?>
-                <?php do_settings_fields( 'rtsyntax', 'rtsyntax-theme' ); ?>
-                <?php submit_button(); ?>
-            </form>
-        </div><?php
-    }
+	public function admin_page() { ?>
+		<div class="wrap">
+		<h2><?php _e( 'rtSyntax', 'rtSyntax' ); ?></h2>
+		<form method="post" action="options.php">
+			<?php settings_fields( 'rtsyntax' ); ?>
+			<?php do_settings_sections( 'rtsyntax' ); ?>
+			<?php do_settings_fields( 'rtsyntax', 'rtsyntax-theme' ); ?>
+			<?php submit_button(); ?>
+		</form>
+		</div><?php
+	}
 
 
 	/**
@@ -182,12 +182,17 @@ class rtSyntax {
 }
 $rtSyntax = new rtSyntax();
 
-// check if this is_plugin_active function is already avaiable or not
+
+/**
+ * check if this is_plugin_active function is already avaiable or not
+ */
 if( ! function_exists( 'is_plugin_active' ) ) {
 	include_once ABSPATH . 'wp-admin/includes/plugin.php';
 }
 
-// if gutenberg plugin is activate then register the blocks
+/**
+ * if gutenberg plugin is activate then register the blocks
+ */
 if( is_plugin_active( 'gutenberg/gutenberg.php' ) ){
 	require 'rtsyntax-block.php';
 }

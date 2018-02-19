@@ -34,6 +34,7 @@ class Edit extends Component {
 		this.changeLanguage = this.changeLanguage.bind(this);
 		this.setAreaHeight = this.setAreaHeight.bind(this);
 		this.changeContent = this.changeContent.bind(this);
+		this.updateContent = this.updateContent.bind(this);
 		this.handleTabKey = this.handleTabKey.bind(this);
 		this.getHighlight = this.getHighlight.bind(this);
 	}
@@ -43,6 +44,14 @@ class Edit extends Component {
 			areaHeight: e.target.scrollHeight + 'px'
 		});
 	}
+
+	changeContent(e){
+		this.props.setAttributes({
+			content: e.target.value,
+			areaHeight: e.target.scrollHeight + 'px',
+		});
+	}
+
 
 	// Prevent default tab behaviour in code textarea
 	handleTabKey(e) {
@@ -62,7 +71,11 @@ class Edit extends Component {
 		textarea.selectionStart = newCaretPosition;
 		textarea.selectionEnd = newCaretPosition;
 		textarea.focus();
-		this.changeContent(e);
+
+		this.props.setAttributes({
+			content: e.target.value,
+		});
+		// this.changeContent(e);
 
 	}
 
@@ -75,12 +88,10 @@ class Edit extends Component {
 			}
 		);
 
-		this.getHighlight();
-
 	}
 
 	// get highlighted code using highlight.js
-	getHighlight(val = null, cb) {
+	getHighlight(val = null, cb = null) {
 		const {attributes, setAttributes} = this.props;
 
 		let content = val !== null ? val : attributes.content;
@@ -91,6 +102,7 @@ class Edit extends Component {
 
 		if (worker !== null) {
 
+			// console.log('posting msg: '+attributes.language);
 			worker.postMessage({
 				language: attributes.language,
 				content : content,
@@ -98,21 +110,26 @@ class Edit extends Component {
 
 			worker.onmessage = (event) => {
 
-				content = event.data.value;
+				if( event.data.value.length !== 0 ){
+					content = <div
+						className={'hljs'}
+						dangerouslySetInnerHTML={{
+							__html: event.data.value
+						}}
+					/>;
 
-				content = <code
-					className={'hljs'}
-					dangerouslySetInnerHTML={{
-						__html: content
-					}}
-				/>;
+					content = [content];
+				} else {
+					content = [];
+				}
+
 
 				if (val !== null) {
 					cb(val, content);
 				} else {
 					setAttributes(
 						{
-							html_content: content
+							html_content: [content]
 						}
 					);
 				}
@@ -148,21 +165,25 @@ class Edit extends Component {
 
 		} else {
 
-			content = event.data.value;
+			if( event.data.value.length !== 0 ){
+				content = <code
+					className={'hljs'}
+					dangerouslySetInnerHTML={{
+						__html: event.data.value
+					}}
+				/>;
 
-			content = <code
-				className={'hljs'}
-				dangerouslySetInnerHTML={{
-					__html: content
-				}}
-			/>;
+				content = [content];
+			} else {
+				content = [];
+			}
 
 			if (val) {
 				cb(val, content);
 			} else {
 				setAttributes(
 					{
-						html_content: content
+						html_content: [content]
 					}
 				);
 			}
@@ -172,19 +193,12 @@ class Edit extends Component {
 	}
 
 	// Save content when content is changed in code text-area
-	changeContent(e) {
-
-		console.log('content');
-		console.log(e.target.value);
+	updateContent() {
 
 		const {setAttributes, attributes} = this.props;
 
-		if (attributes.content === e.target.value) {
-			return;
-		}
-
 		this.getHighlight(
-			e.target.value,
+			attributes.content,
 			(value, content) => {
 				setAttributes(
 					{
@@ -203,7 +217,6 @@ class Edit extends Component {
 		const {attributes, isSelected} = this.props;
 		const {state} = this;
 
-
 		// list of languages from highlight.js
 		let languages = hljs.listLanguages();
 		languages = languages.map(
@@ -221,12 +234,17 @@ class Edit extends Component {
 			</div>
 		) : '';
 
+		let showContent = attributes.html_content!== undefined && attributes.html_content.length !== undefined && attributes.html_content.length > 0;
+
 		// return content
 		return [
 
 			// Textarea to edit code, only show when in focus {__('Selected Language','rtSyntax')}: {attributes.language}
 			isSelected && (
-				<div>
+				<div
+					tabIndex={'1'}
+					onBlur={this.updateContent}
+				>
 					<SelectControl
 						label={__('Language', 'rtSyntax')}
 						value={attributes.language}
@@ -234,7 +252,8 @@ class Edit extends Component {
 						onChange={this.changeLanguage}
 					/>
 					<textarea
-						onBlur={this.changeContent}
+						onFocus={this.setAreaHeight}
+						onChange={this.changeContent}
 						onKeyDown={this.handleTabKey}
 						className={'form-control'}
 						style={{width: '100%', height: '20em'}}
@@ -250,8 +269,8 @@ class Edit extends Component {
 			!isSelected && (
 				<div>
 					<pre>
-						{updateMessage}
-						{attributes.html_content.length!==undefined?attributes.html_content:'rtSyntax: Click here to add code...'}
+						{showContent ? updateMessage : ''}
+						{showContent ? attributes.html_content : 'Click here to add code ....'}
 					</pre>
 				</div>
 			)

@@ -24,7 +24,7 @@ registerBlockType(
 			// to store current language.
 			language: {
 				type   : 'string',
-				default: 'java',
+				default: 'php',
 			},
 
 			// to store only text content
@@ -42,7 +42,7 @@ registerBlockType(
 			// to store and fetch full html content
 			html_content: {
 				source  : 'children',
-				selector: 'pre',
+				selector: '.pre',
 			},
 		},
 

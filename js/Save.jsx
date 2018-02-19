@@ -13,7 +13,7 @@ class Save extends Component {
 
 	// Render the output of save method
 	render() {
-		return <pre>{this.props.attributes.html_content}</pre>;
+		return <pre className={'pre'}>{this.props.attributes.html_content}</pre>;
 	}
 
 }
