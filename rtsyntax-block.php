@@ -29,20 +29,11 @@ add_action(
 		);
 
 		/**
-		 * Custom style css file for all custom blocks
-		 */
-		wp_enqueue_style(
-			'style-css',
-			plugins_url( '/css/style.css', __FILE__ ),
-			[ 'wp-edit-blocks' ]
-		);
-
-		/**
 		 * Default theme file for code editor
 		 */
 		wp_enqueue_style(
 			'highlight',
-			plugins_url( '/css/themes/' . $options['theme'] . '.css', __FILE__ )
+			plugins_url( '/css/' . $options['theme'] . '.css', __FILE__ )
 		);
 
 		/**

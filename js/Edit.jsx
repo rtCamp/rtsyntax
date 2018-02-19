@@ -1,7 +1,3 @@
-// library to highlight the code
-let hljs = require('./highlight.js');
-
-
 // Initialize the worker
 let worker = null;
 
