@@ -183,12 +183,13 @@ class RtSyntax {
 		<script>
 			jQuery(function () {
 				var $ = jQuery;
-				$('pre code').each(function(i, block) {
+				/*$('pre code').each(function(i, block) {
 					if(block.classList.contains('highlight-block')){
 						return;
 					}
 					hljs.highlightBlock(block);
-				});
+				});*/
+				hljs.initHighlightingOnLoad();
 			} );
 		</script>
 		<?php

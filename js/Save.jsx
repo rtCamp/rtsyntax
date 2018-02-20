@@ -13,7 +13,7 @@ class Save extends Component {
 
 	// Render the output of save method
 	render() {
-		return <pre className={'highlight-block'}>{this.props.attributes.html_content}</pre>;
+		return <pre className={this.props.attributes.language}>{this.props.attributes.content}</pre>;
 	}
 
 }

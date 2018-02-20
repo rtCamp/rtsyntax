@@ -1,3 +1,5 @@
+let hljs = require('./highlight.js');
+
 // Initialize the worker
 let worker = null;
 
@@ -22,8 +24,10 @@ class Edit extends Component {
 
 		// Init states
 		this.state = {
-			updateMessage: null,
+			updateMessage: false,
 			status       : '',
+			html_content : '',
+			start: false,
 		};
 
 		// Bind methods
@@ -33,6 +37,8 @@ class Edit extends Component {
 		this.updateContent = this.updateContent.bind(this);
 		this.handleTabKey = this.handleTabKey.bind(this);
 		this.getHighlight = this.getHighlight.bind(this);
+
+		this.getHighlight();
 	}
 
 	setAreaHeight(e) {
@@ -123,37 +129,47 @@ class Edit extends Component {
 				if (val !== null) {
 					cb(val, content);
 				} else {
-					setAttributes(
-						{
-							html_content: [content]
-						}
-					);
+					this.changeHtmlContent(content);
 				}
 
 
 				if (debug) {
-					this.setState({
-						updateMessage: __('The code has been highlighted!', 'rtSyntax'),
-						status       : 'success'
-					});
+					this.setState((prevState) => {
 
-					setTimeout(
-						() => {
-							this.setState({
-								updateMessage: null
-							});
-						},
-						3000
-					);
+						if( !prevState.updateMessage ){
+							return {};
+						}
+
+                        setTimeout(
+                            () => {
+                                this.setState({
+                                    updateMessage: null
+                                });
+                            },
+                            3000
+                        );
+
+                        return {
+                            updateMessage: __('The code has been highlighted!', 'rtSyntax'),
+							status: 'success'
+                        }
+					});
 				}
 
 
 			};
 
 			if (debug) {
-				this.setState({
-					updateMessage: __('Highlighting the new code! Please wait...', 'rtSyntax'),
-					status       : 'danger',
+				this.setState((prevState)=>{
+
+					if( !prevState.start ){
+						return {start:true};
+					}
+
+					return {
+						updateMessage: __('Highlighting the new code! Please wait...', 'rtSyntax'),
+						status       : 'danger',
+					}
 				});
 			}
 
@@ -177,15 +193,17 @@ class Edit extends Component {
 			if (val) {
 				cb(val, content);
 			} else {
-				setAttributes(
-					{
-						html_content: [content]
-					}
-				);
+				this.changeHtmlContent(content);
 			}
 
 		}
 
+	}
+
+	changeHtmlContent(content){
+		this.setState({
+			html_content : content,
+		});
 	}
 
 	// Save content when content is changed in code text-area
@@ -199,9 +217,9 @@ class Edit extends Component {
 				setAttributes(
 					{
 						content     : value,
-						html_content: content
 					}
 				);
+				this.changeHtmlContent(content);
 			}
 		);
 
@@ -225,12 +243,12 @@ class Edit extends Component {
 		);
 
 		let updateMessage = state.updateMessage && debug ? (
-			<div style={{padding: '5px', marginBottom: '5px'}} className={'alert alert-' + state.status}>
+			<div style={{padding: '5px', marginBottom: '5px', backgroundColor: state.status==='danger'?'#ff000085':'#00b4c7', color: 'white', borderRadius: '4px',paddingLeft:'1.2em'}}>
 				{state.updateMessage}
 			</div>
 		) : '';
 
-		let showContent = attributes.html_content!== undefined && attributes.html_content.length !== undefined && attributes.html_content.length > 0;
+		let showContent = state.html_content!== undefined && state.html_content.length !== undefined && state.html_content.length > 0;
 
 		// return content
 		return [
@@ -266,7 +284,7 @@ class Edit extends Component {
 				<pre>
 					<code>
 						{showContent ? updateMessage : ''}
-						{showContent ? attributes.html_content : 'Click here to add code ....'}
+						{showContent ? state.html_content : 'Click here to add code ....'}
 					</code>
 				</pre>
 			)

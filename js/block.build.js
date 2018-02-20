@@ -136,7 +136,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// library to highlight the code
 var hljs = __webpack_require__(2);
 
 // Initialize the worker
@@ -166,8 +165,10 @@ var Edit = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (Edit.__proto__ || Object.getPrototypeOf(Edit)).apply(this, arguments));
 
 		_this.state = {
-			updateMessage: null,
-			status: ''
+			updateMessage: false,
+			status: '',
+			html_content: '',
+			start: false
 		};
 
 		// Bind methods
@@ -177,6 +178,8 @@ var Edit = function (_Component) {
 		_this.updateContent = _this.updateContent.bind(_this);
 		_this.handleTabKey = _this.handleTabKey.bind(_this);
 		_this.getHighlight = _this.getHighlight.bind(_this);
+
+		_this.getHighlight();
 		return _this;
 	}
 
@@ -281,29 +284,41 @@ var Edit = function (_Component) {
 					if (val !== null) {
 						cb(val, content);
 					} else {
-						setAttributes({
-							html_content: [content]
-						});
+						_this2.changeHtmlContent(content);
 					}
 
 					if (debug) {
-						_this2.setState({
-							updateMessage: __('The code has been highlighted!', 'rtSyntax'),
-							status: 'success'
-						});
+						_this2.setState(function (prevState) {
 
-						setTimeout(function () {
-							_this2.setState({
-								updateMessage: null
-							});
-						}, 3000);
+							if (!prevState.updateMessage) {
+								return {};
+							}
+
+							setTimeout(function () {
+								_this2.setState({
+									updateMessage: null
+								});
+							}, 3000);
+
+							return {
+								updateMessage: __('The code has been highlighted!', 'rtSyntax'),
+								status: 'success'
+							};
+						});
 					}
 				};
 
 				if (debug) {
-					this.setState({
-						updateMessage: __('Highlighting the new code! Please wait...', 'rtSyntax'),
-						status: 'danger'
+					this.setState(function (prevState) {
+
+						if (!prevState.start) {
+							return { start: true };
+						}
+
+						return {
+							updateMessage: __('Highlighting the new code! Please wait...', 'rtSyntax'),
+							status: 'danger'
+						};
 					});
 				}
 
@@ -326,11 +341,16 @@ var Edit = function (_Component) {
 				if (val) {
 					cb(val, content);
 				} else {
-					setAttributes({
-						html_content: [content]
-					});
+					this.changeHtmlContent(content);
 				}
 			}
+		}
+	}, {
+		key: 'changeHtmlContent',
+		value: function changeHtmlContent(content) {
+			this.setState({
+				html_content: content
+			});
 		}
 
 		// Save content when content is changed in code text-area
@@ -338,6 +358,8 @@ var Edit = function (_Component) {
 	}, {
 		key: 'updateContent',
 		value: function updateContent() {
+			var _this3 = this;
+
 			var _props2 = this.props,
 			    setAttributes = _props2.setAttributes,
 			    attributes = _props2.attributes;
@@ -345,9 +367,9 @@ var Edit = function (_Component) {
 
 			this.getHighlight(attributes.content, function (value, content) {
 				setAttributes({
-					content: value,
-					html_content: content
+					content: value
 				});
+				_this3.changeHtmlContent(content);
 			});
 		}
 
@@ -373,11 +395,11 @@ var Edit = function (_Component) {
 
 			var updateMessage = state.updateMessage && debug ? wp.element.createElement(
 				'div',
-				{ style: { padding: '5px', marginBottom: '5px' }, className: 'alert alert-' + state.status },
+				{ style: { padding: '5px', marginBottom: '5px', backgroundColor: state.status === 'danger' ? '#ff000085' : '#00b4c7', color: 'white', borderRadius: '4px', paddingLeft: '1.2em' } },
 				state.updateMessage
 			) : '';
 
-			var showContent = attributes.html_content !== undefined && attributes.html_content.length !== undefined && attributes.html_content.length > 0;
+			var showContent = state.html_content !== undefined && state.html_content.length !== undefined && state.html_content.length > 0;
 
 			// return content
 			return [
@@ -417,7 +439,7 @@ var Edit = function (_Component) {
 					'code',
 					null,
 					showContent ? updateMessage : '',
-					showContent ? attributes.html_content : 'Click here to add code ....'
+					showContent ? state.html_content : 'Click here to add code ....'
 				)
 			)];
 		}
@@ -474,12 +496,12 @@ var Save = function (_Component) {
 
 
 	_createClass(Save, [{
-		key: 'render',
+		key: "render",
 		value: function render() {
 			return wp.element.createElement(
-				'pre',
-				{ className: 'highlight-block' },
-				this.props.attributes.html_content
+				"pre",
+				{ className: this.props.attributes.language },
+				this.props.attributes.content
 			);
 		}
 	}]);
