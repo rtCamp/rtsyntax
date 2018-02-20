@@ -1,0 +1,23 @@
+box: ubuntu
+# box: wercker/default
+
+# build:
+#   steps:
+#
+#     - script:
+#         name: placehoder
+#         code: echo "nothing to build"
+
+deploy:
+  steps:
+    # - install-packages:
+        # packages: subversion git wget
+
+    - rtcamp/wordpress-svn:
+        pluginslug: rtsyntax
+        mainfile: rtsyntax.php
+        svnuser: $SVNUSER
+        svnpass: $SVNPASS
+        gituser: $GITUSER
+        gitpass: $GITPASS
+        gitemail: $GITEMAIL
