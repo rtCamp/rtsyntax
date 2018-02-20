@@ -23,7 +23,6 @@ class Edit extends Component {
 
 		super(...arguments);
 
-
 		// set area height of textarea
 		let temp_txtarea = document.createElement('textarea');
 		temp_txtarea.value = this.props.attributes.content;

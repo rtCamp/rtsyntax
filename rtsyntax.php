@@ -133,7 +133,6 @@ class rtSyntax {
 		$plugin_array['rtsyntax'] = plugin_dir_url( __FILE__ ) . 'js/rtsyntax.js';
 		$plugin_array['rtcode']   = plugin_dir_url( __FILE__ ) . 'js/rtsyntax.js';
 		$plugin_array['rtkey']    = plugin_dir_url( __FILE__ ) . 'js/rtsyntax.js';
-
 		return $plugin_array;
 	}
 
