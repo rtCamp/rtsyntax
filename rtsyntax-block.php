@@ -24,11 +24,19 @@ function rtsyntax_block_enqueue_editor_assets() {
 	);
 
 	/**
-	 * Default theme file for code editor
+	 * theme file for code editor
 	 */
 	wp_enqueue_style(
 		'highlight',
 		plugins_url( '/css/' . $options['theme'] . '.css', __FILE__ )
+	);
+
+	/**
+	 * theme file for block view
+	 */
+	wp_enqueue_style(
+		'editor',
+		plugins_url( '/css/editor.css', __FILE__ )
 	);
 
 	/**

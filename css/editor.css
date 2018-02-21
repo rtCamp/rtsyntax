@@ -1,0 +1,9 @@
+/* Select Language Style  */
+.blocks-base-control__label {
+	width: 40%;
+	display: inline-block;
+}
+.blocks-select-control__input {
+	width: 58%;
+
+}

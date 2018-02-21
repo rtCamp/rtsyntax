@@ -298,7 +298,7 @@ class Edit extends Component {
 			isSelected && (
 				<div>
 					<SelectControl
-						label={__('Language', 'rtSyntax')}
+						label={__('Language:', 'rtSyntax')}
 						value={state.language}
 						options={languages}
 						onChange={this.changeLanguage}

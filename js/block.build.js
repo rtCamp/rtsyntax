@@ -443,7 +443,7 @@ var Edit = function (_Component) {
 				'div',
 				null,
 				wp.element.createElement(SelectControl, {
-					label: __('Language', 'rtSyntax'),
+					label: __('Language:', 'rtSyntax'),
 					value: state.language,
 					options: languages,
 					onChange: this.changeLanguage
