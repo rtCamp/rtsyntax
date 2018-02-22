@@ -296,7 +296,7 @@ class Edit extends Component {
 
 			// Textarea to edit code, only show when in focus
 			isSelected && (
-				<div>
+				<div className={'rtsyntax-edit'}>
 					<SelectControl
 						label={__('Language:', 'rtSyntax')}
 						value={state.language}

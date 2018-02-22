@@ -441,7 +441,7 @@ var Edit = function (_Component) {
 			// Textarea to edit code, only show when in focus
 			isSelected && wp.element.createElement(
 				'div',
-				null,
+				{ className: 'rtsyntax-edit' },
 				wp.element.createElement(SelectControl, {
 					label: __('Language:', 'rtSyntax'),
 					value: state.language,
