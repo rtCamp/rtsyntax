@@ -13,10 +13,10 @@ const {__} = wp.i18n;
 registerBlockType(
 	'rtsyntax/rtsyntax-block',
 	{
-		title      : __('rtSyntax', 'rtSyntax'),
+		title      : __('rtSyntax', 'rtsyntax'),
 		category   : 'formatting',
 		icon       : 'editor-code',
-		keywords   : [__('highlight', 'rtSyntax'), __('code', 'rtSyntax')],
+		keywords   : [__('highlight', 'rtsyntax'), __('code', 'rtsyntax')],
 		supportHTML: false,
 
 		attributes: {

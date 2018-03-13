@@ -83,10 +83,10 @@ var __ = wp.i18n.__;
 // Registering highlighter block
 
 registerBlockType('rtsyntax/rtsyntax-block', {
-	title: __('rtSyntax', 'rtSyntax'),
+	title: __('rtSyntax', 'rtsyntax'),
 	category: 'formatting',
 	icon: 'editor-code',
-	keywords: [__('highlight', 'rtSyntax'), __('code', 'rtSyntax')],
+	keywords: [__('highlight', 'rtsyntax'), __('code', 'rtsyntax')],
 	supportHTML: false,
 
 	attributes: {
@@ -353,7 +353,7 @@ var Edit = function (_Component) {
 							};
 						} else {
 							return {
-								updateMessage: __('The code is being highlighted! Please wait...', 'rtSyntax'),
+								updateMessage: __('The code is being highlighted! Please wait...', 'rtsyntax'),
 								status: 'danger',
 								contentChanged: false
 							};
@@ -378,7 +378,7 @@ var Edit = function (_Component) {
 						return {
 							html_content: html_content,
 							contentChanged: false,
-							updateMessage: __('The code has been highlighted!', 'rtSyntax'),
+							updateMessage: __('The code has been highlighted!', 'rtsyntax'),
 							status: 'success'
 						};
 					}
@@ -443,7 +443,7 @@ var Edit = function (_Component) {
 				'div',
 				{ className: 'rtsyntax-edit' },
 				wp.element.createElement(SelectControl, {
-					label: __('Language:', 'rtSyntax'),
+					label: __('Language:', 'rtsyntax'),
 					value: state.language,
 					options: languages,
 					onChange: this.changeLanguage
@@ -456,7 +456,7 @@ var Edit = function (_Component) {
 						onKeyDown: this.handleTabKey,
 						className: 'form-control',
 						style: { width: '100%', maxHeight: '60em', minHeight: '20em', height: state.areaHeight },
-						placeholder: __("Enter code here", 'rtSyntax') + " ... "
+						placeholder: __("Enter code here", 'rtsyntax') + " ... "
 					},
 					state.content
 				)

@@ -204,7 +204,7 @@ class Edit extends Component {
 						};
 					} else {
 						return {
-							updateMessage : __('The code is being highlighted! Please wait...', 'rtSyntax'),
+							updateMessage : __('The code is being highlighted! Please wait...', 'rtsyntax'),
 							status        : 'danger',
 							contentChanged: false,
 						}
@@ -231,7 +231,7 @@ class Edit extends Component {
 					return {
 						html_content  : html_content,
 						contentChanged: false,
-						updateMessage : __('The code has been highlighted!', 'rtSyntax'),
+						updateMessage : __('The code has been highlighted!', 'rtsyntax'),
 						status        : 'success',
 					};
 				}
@@ -298,7 +298,7 @@ class Edit extends Component {
 			isSelected && (
 				<div className={'rtsyntax-edit'}>
 					<SelectControl
-						label={__('Language:', 'rtSyntax')}
+						label={__('Language:', 'rtsyntax')}
 						value={state.language}
 						options={languages}
 						onChange={this.changeLanguage}
@@ -309,7 +309,7 @@ class Edit extends Component {
 						onKeyDown={this.handleTabKey}
 						className={'form-control'}
 						style={{width: '100%', maxHeight: '60em' , minHeight: '20em', height: state.areaHeight}}
-						placeholder={__("Enter code here", 'rtSyntax') + " ... "}
+						placeholder={__("Enter code here", 'rtsyntax') + " ... "}
 					>
 						{state.content}
 					</textarea>

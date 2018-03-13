@@ -4,10 +4,11 @@
  * Plugin URI: https://wordpress.org/plugins/rtsyntax/
  * Author: rtCamp
  * Author URI: https://rtcamp.com
- * Version: 1.0.5
- * Description: A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress. Tested upto 4.9.4
- * Contributors: rtcamp, rahul286, JoshuaAbenazer
+ * Version: 1.1.0
+ * Description: A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress.
+ * Contributors: rtcamp, rahul286, JoshuaAbenazer, sid177, montu3366
  * Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
+ * Text Domain: rtsyntax
  *
  * @package rtsyntax
  *
@@ -24,8 +25,8 @@ class rtSyntax {
 	public function __construct() {
 		register_activation_hook( __FILE__, array( $this, 'initialize_option' ) );
 		if ( is_admin() ) {
-			add_action( 'admin_init', array( &$this, 'register_settings' ) );
-			add_action( 'admin_menu', array( &$this, 'admin' ) );
+			add_action( 'admin_init', array( $this, 'register_settings' ) );
+			add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 
 			add_filter( 'mce_external_plugins', array( $this, 'rtsyntax_buttons' ) );
 			add_filter( 'mce_buttons', array( $this, 'register_rtsyntax_buttons' ) );
@@ -50,8 +51,8 @@ class rtSyntax {
 	 * Register settings in settings section
 	 */
 	public function register_settings() {
-		add_settings_section( 'rtsyntax-options', __( 'Code Theme', 'rtSyntax' ), array( $this, 'settings_section' ), 'rtsyntax' );
-		add_settings_field( 'rtsyntax-theme', __( 'Theme', 'rtSyntax' ), array( $this, 'settings_field' ), 'rtsyntax', 'rtsyntax-options' );
+		add_settings_section( 'rtsyntax-options', __( 'Code Theme', 'rtsyntax' ), array( $this, 'settings_section' ), 'rtsyntax' );
+		add_settings_field( 'rtsyntax-theme', __( 'Theme', 'rtsyntax' ), array( $this, 'settings_field' ), 'rtsyntax', 'rtsyntax-options' );
 		register_setting( 'rtsyntax', 'rtsyntax_options' );
 	}
 
@@ -68,32 +69,32 @@ class rtSyntax {
 		$options = get_option( 'rtsyntax_options' );
 		?>
 		<select title="Select theme" id="rtsyntax-theme" name="rtsyntax_options[theme]">
-			<option value="default"<?php selected( $options['theme'], 'default', true ); ?>><?php esc_html_e( 'Default', 'rtSyntax' ); ?></option>
-			<option value="arta"<?php selected( $options['theme'], 'arta', true ); ?>><?php esc_html_e( 'Arta', 'rtSyntax' ); ?></option>
-			<option value="ascetic"<?php selected( $options['theme'], 'ascetic', true ); ?>><?php esc_html_e( 'Ascetic', 'rtSyntax' ); ?></option>
-			<option value="brown_paper"<?php selected( $options['theme'], 'brown-paper', true ); ?>><?php esc_html_e( 'Brown Paper', 'rtSyntax' ); ?></option>
-			<option value="dark"<?php selected( $options['theme'], 'dark', true ); ?>><?php esc_html_e( 'Dark', 'rtSyntax' ); ?></option>
-			<option value="far"<?php selected( $options['theme'], 'far', true ); ?>><?php esc_html_e( 'FAR', 'rtSyntax' ); ?></option>
-			<option value="github"<?php selected( $options['theme'], 'github', true ); ?>><?php esc_html_e( 'GitHub', 'rtSyntax' ); ?></option>
-			<option value="googlecode"<?php selected( $options['theme'], 'googlecode', true ); ?>><?php esc_html_e( 'Google Code', 'rtSyntax' ); ?></option>
-			<option value="idea"<?php selected( $options['theme'], 'idea', true ); ?>><?php esc_html_e( 'IDEA', 'rtSyntax' ); ?></option>
-			<option value="ir_black"<?php selected( $options['theme'], 'ir-black', true ); ?>><?php esc_html_e( 'IR Black', 'rtSyntax' ); ?></option>
-			<option value="magula"<?php selected( $options['theme'], 'magula', true ); ?>><?php esc_html_e( 'Magula', 'rtSyntax' ); ?></option>
-			<option value="monokai"<?php selected( $options['theme'], 'monokai', true ); ?>><?php esc_html_e( 'Monokai', 'rtSyntax' ); ?></option>
-			<option value="pojoaque"<?php selected( $options['theme'], 'pojoaque', true ); ?>><?php esc_html_e( 'Pojoaque', 'rtSyntax' ); ?></option>
-			<option value="rainbow"<?php selected( $options['theme'], 'rainbow', true ); ?>><?php esc_html_e( 'Rainbow', 'rtSyntax' ); ?></option>
-			<option value="school_book"<?php selected( $options['theme'], 'school-book', true ); ?>><?php esc_html_e( 'School Book', 'rtSyntax' ); ?></option>
-			<option value="solarized_dark"<?php selected( $options['theme'], 'solarized-dark', true ); ?>><?php esc_html_e( 'Solarized Dark', 'rtSyntax' ); ?></option>
-			<option value="solarized_light"<?php selected( $options['theme'], 'solarized-light', true ); ?>><?php esc_html_e( 'Solarized Light', 'rtSyntax' ); ?></option>
-			<option value="sunburst"<?php selected( $options['theme'], 'sunburst', true ); ?>><?php esc_html_e( 'Sunburst', 'rtSyntax' ); ?></option>
-			<option value="tomorrow-night-blue"<?php selected( $options['theme'], 'tomorrow-night-blue', true ); ?>><?php esc_html_e( 'Tomorrow Night Blue', 'rtSyntax' ); ?></option>
-			<option value="tomorrow-night-bright"<?php selected( $options['theme'], 'tomorrow-night-bright', true ); ?>><?php esc_html_e( 'Tomorrow Night Bright', 'rtSyntax' ); ?></option>
-			<option value="tomorrow-night-eighties"<?php selected( $options['theme'], 'tomorrow-night-eighties', true ); ?>><?php esc_html_e( 'Tomorrow Night Eighties', 'rtSyntax' ); ?></option>
-			<option value="tomorrow-night"<?php selected( $options['theme'], 'tomorrow-night', true ); ?>><?php esc_html_e( 'Tomorrow Night', 'rtSyntax' ); ?></option>
-			<option value="tomorrow"<?php selected( $options['theme'], 'tomorrow', true ); ?>><?php esc_html_e( 'Tomorrow', 'rtSyntax' ); ?></option>
-			<option value="vs"<?php selected( $options['theme'], 'vs', true ); ?>><?php esc_html_e( 'Visual Studio', 'rtSyntax' ); ?></option>
-			<option value="xcode"<?php selected( $options['theme'], 'xcode', true ); ?>><?php esc_html_e( 'XCode', 'rtSyntax' ); ?></option>
-			<option value="zenburn"<?php selected( $options['theme'], 'zenburn', true ); ?>><?php esc_html_e( 'Zenburn', 'rtSyntax' ); ?></option>
+			<option value="default"<?php selected( $options['theme'], 'default', true ); ?>><?php esc_html_e( 'Default', 'rtsyntax' ); ?></option>
+			<option value="arta"<?php selected( $options['theme'], 'arta', true ); ?>><?php esc_html_e( 'Arta', 'rtsyntax' ); ?></option>
+			<option value="ascetic"<?php selected( $options['theme'], 'ascetic', true ); ?>><?php esc_html_e( 'Ascetic', 'rtsyntax' ); ?></option>
+			<option value="brown_paper"<?php selected( $options['theme'], 'brown-paper', true ); ?>><?php esc_html_e( 'Brown Paper', 'rtsyntax' ); ?></option>
+			<option value="dark"<?php selected( $options['theme'], 'dark', true ); ?>><?php esc_html_e( 'Dark', 'rtsyntax' ); ?></option>
+			<option value="far"<?php selected( $options['theme'], 'far', true ); ?>><?php esc_html_e( 'FAR', 'rtsyntax' ); ?></option>
+			<option value="github"<?php selected( $options['theme'], 'github', true ); ?>><?php esc_html_e( 'GitHub', 'rtsyntax' ); ?></option>
+			<option value="googlecode"<?php selected( $options['theme'], 'googlecode', true ); ?>><?php esc_html_e( 'Google Code', 'rtsyntax' ); ?></option>
+			<option value="idea"<?php selected( $options['theme'], 'idea', true ); ?>><?php esc_html_e( 'IDEA', 'rtsyntax' ); ?></option>
+			<option value="ir_black"<?php selected( $options['theme'], 'ir-black', true ); ?>><?php esc_html_e( 'IR Black', 'rtsyntax' ); ?></option>
+			<option value="magula"<?php selected( $options['theme'], 'magula', true ); ?>><?php esc_html_e( 'Magula', 'rtsyntax' ); ?></option>
+			<option value="monokai"<?php selected( $options['theme'], 'monokai', true ); ?>><?php esc_html_e( 'Monokai', 'rtsyntax' ); ?></option>
+			<option value="pojoaque"<?php selected( $options['theme'], 'pojoaque', true ); ?>><?php esc_html_e( 'Pojoaque', 'rtsyntax' ); ?></option>
+			<option value="rainbow"<?php selected( $options['theme'], 'rainbow', true ); ?>><?php esc_html_e( 'Rainbow', 'rtsyntax' ); ?></option>
+			<option value="school_book"<?php selected( $options['theme'], 'school-book', true ); ?>><?php esc_html_e( 'School Book', 'rtsyntax' ); ?></option>
+			<option value="solarized_dark"<?php selected( $options['theme'], 'solarized-dark', true ); ?>><?php esc_html_e( 'Solarized Dark', 'rtsyntax' ); ?></option>
+			<option value="solarized_light"<?php selected( $options['theme'], 'solarized-light', true ); ?>><?php esc_html_e( 'Solarized Light', 'rtsyntax' ); ?></option>
+			<option value="sunburst"<?php selected( $options['theme'], 'sunburst', true ); ?>><?php esc_html_e( 'Sunburst', 'rtsyntax' ); ?></option>
+			<option value="tomorrow-night-blue"<?php selected( $options['theme'], 'tomorrow-night-blue', true ); ?>><?php esc_html_e( 'Tomorrow Night Blue', 'rtsyntax' ); ?></option>
+			<option value="tomorrow-night-bright"<?php selected( $options['theme'], 'tomorrow-night-bright', true ); ?>><?php esc_html_e( 'Tomorrow Night Bright', 'rtsyntax' ); ?></option>
+			<option value="tomorrow-night-eighties"<?php selected( $options['theme'], 'tomorrow-night-eighties', true ); ?>><?php esc_html_e( 'Tomorrow Night Eighties', 'rtsyntax' ); ?></option>
+			<option value="tomorrow-night"<?php selected( $options['theme'], 'tomorrow-night', true ); ?>><?php esc_html_e( 'Tomorrow Night', 'rtsyntax' ); ?></option>
+			<option value="tomorrow"<?php selected( $options['theme'], 'tomorrow', true ); ?>><?php esc_html_e( 'Tomorrow', 'rtsyntax' ); ?></option>
+			<option value="vs"<?php selected( $options['theme'], 'vs', true ); ?>><?php esc_html_e( 'Visual Studio', 'rtsyntax' ); ?></option>
+			<option value="xcode"<?php selected( $options['theme'], 'xcode', true ); ?>><?php esc_html_e( 'XCode', 'rtsyntax' ); ?></option>
+			<option value="zenburn"<?php selected( $options['theme'], 'zenburn', true ); ?>><?php esc_html_e( 'Zenburn', 'rtsyntax' ); ?></option>
 		</select>
 		<?php
 	}
@@ -101,8 +102,8 @@ class rtSyntax {
 	/**
 	 * Add settings page on admin side
 	 */
-	public function admin() {
-		add_options_page( __( 'rtSyntax', 'rtSyntax' ), __( 'rtSyntax', 'rtSyntax' ), 'manage_options', 'rtsyntax', array( $this, 'admin_page' ) );
+	public function add_admin_menu() {
+		add_options_page( __( 'rtSyntax', 'rtsyntax' ), __( 'rtSyntax', 'rtsyntax' ), 'manage_options', 'rtsyntax', array( $this, 'admin_page' ) );
 	}
 
 	/**
@@ -111,12 +112,14 @@ class rtSyntax {
 	public function admin_page() {
 		?>
 		<div class="wrap">
-			<h2><?php esc_html_e( 'rtSyntax', 'rtSyntax' ); ?></h2>
+			<h2><?php esc_html_e( 'rtSyntax', 'rtsyntax' ); ?></h2>
 			<form method="post" action="options.php">
-				<?php settings_fields( 'rtsyntax' ); ?>
-				<?php do_settings_sections( 'rtsyntax' ); ?>
-				<?php do_settings_fields( 'rtsyntax', 'rtsyntax-theme' ); ?>
-				<?php submit_button(); ?>
+				<?php
+				settings_fields( 'rtsyntax' );
+				do_settings_sections( 'rtsyntax' );
+				do_settings_fields( 'rtsyntax', 'rtsyntax-theme' );
+				submit_button();
+				?>
 			</form>
 		</div>
 		<?php
@@ -125,14 +128,14 @@ class rtSyntax {
 	/**
 	 * Register buttons to display on tinyMCE editor
 	 *
-	 * @param array $plugin_array Pulugin Related Array.
+	 * @param array $plugin_array Plugin Related Array.
 	 *
 	 * @return array
 	 */
 	public function rtsyntax_buttons( $plugin_array ) {
-		$plugin_array['rtsyntax'] = plugin_dir_url( __FILE__ ) . 'js/rtsyntax.js';
-		$plugin_array['rtcode']   = plugin_dir_url( __FILE__ ) . 'js/rtsyntax.js';
-		$plugin_array['rtkey']    = plugin_dir_url( __FILE__ ) . 'js/rtsyntax.js';
+		$plugin_array['rtsyntax'] = RTSYNTAX_DIR_URL . 'js/rtsyntax.js';
+		$plugin_array['rtcode']   = RTSYNTAX_DIR_URL . 'js/rtsyntax.js';
+		$plugin_array['rtkey']    = RTSYNTAX_DIR_URL . 'js/rtsyntax.js';
 		return $plugin_array;
 	}
 
@@ -154,8 +157,8 @@ class rtSyntax {
 	 */
 	public function enqueue() {
 		$options = get_option( 'rtsyntax_options' );
-		wp_enqueue_style( 'rtsyntax-' . $options['theme'], plugin_dir_url( __FILE__ ) . '/css/' . $options['theme'] . '.css' );
-		wp_enqueue_script( 'rtsyntax', plugin_dir_url( __FILE__ ) . '/js/highlight.js', array(), null, true );
+		wp_enqueue_style( 'rtsyntax-' . $options['theme'], RTSYNTAX_DIR_URL . '/css/' . $options['theme'] . '.css' );
+		wp_enqueue_script( 'rtsyntax', RTSYNTAX_DIR_URL . '/js/highlight.js', array(), null, true );
 	}
 
 	/**

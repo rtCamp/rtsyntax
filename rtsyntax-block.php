@@ -9,6 +9,12 @@ defined( 'ABSPATH' ) || exit;
 
 
 /**
+ * Constants
+ */
+define( 'RTSYNTAX_DIR_URL', plugin_dir_url( __FILE__ ) );
+
+
+/**
  * load required css and js files for gutenberg editor
  */
 function rtsyntax_block_enqueue_editor_assets() {
@@ -47,7 +53,7 @@ function rtsyntax_block_enqueue_editor_assets() {
 		'block.build.js',
 		'highlight_obj',
 		array(
-			'path'  => plugin_dir_url( __FILE__ ),
+			'path'  => RTSYNTAX_DIR_URL,
 			'debug' => WP_DEBUG,
 		)
 	);
