@@ -23,6 +23,12 @@ class rtSyntax {
 	 * rtSyntax constructor.
 	 */
 	public function __construct() {
+
+		/**
+		 * Constants
+		 */
+		define( 'RTSYNTAX_DIR_URL', plugin_dir_url( __FILE__ ) );
+
 		register_activation_hook( __FILE__, array( $this, 'initialize_option' ) );
 		if ( is_admin() ) {
 			add_action( 'admin_init', array( $this, 'register_settings' ) );
