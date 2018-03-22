@@ -73,34 +73,45 @@ class rtSyntax {
 	 */
 	public function settings_field() {
 		$options = get_option( 'rtsyntax_options' );
+
+		$themes = array(
+			array( 'default', 'default', 'Default' ),
+			array( 'arta', 'arta', 'Arta' ),
+			array( 'ascetic', 'ascetic', 'Ascetic' ),
+			array( 'brown_paper', 'brown-paper', 'Brown Paper' ),
+			array( 'dark', 'dark', 'Dark' ),
+			array( 'far', 'far', 'FAR' ),
+			array( 'github', 'github', 'GitHub' ),
+			array( 'googlecode', 'googlecode', 'Google Code' ),
+			array( 'idea', 'idea', 'IDEA' ),
+			array( 'ir_black', 'ir-black', 'IR Black' ),
+			array( 'magula', 'magula', 'Magula' ),
+			array( 'monokai', 'monokai', 'Monokai' ),
+			array( 'pojoaque', 'pojoaque', 'Pojoaque' ),
+			array( 'rainbow', 'rainbow', 'Rainbow' ),
+			array( 'school_book', 'school-book', 'School Book' ),
+			array( 'solarized_dark', 'solarized-dark', 'Solarized Dark' ),
+			array( 'solarized_light', 'solarized-light', 'Solarized Light' ),
+			array( 'sunburst', 'sunburst', 'Sunburst' ),
+			array( 'tomorrow-night-blue', 'tomorrow-night-blue', 'Tomorrow Night Blue' ),
+			array( 'tomorrow-night-bright', 'tomorrow-night-bright', 'Tomorrow Night Bright' ),
+			array( 'tomorrow-night-eighties', 'tomorrow-night-eighties', 'Tomorrow Night Eighties' ),
+			array( 'tomorrow-night', 'tomorrow-night', 'Tomorrow Night' ),
+			array( 'tomorrow', 'tomorrow', 'Tomorrow' ),
+			array( 'vs', 'vs', 'Visual Studio' ),
+			array( 'xcode', 'xcode', 'XCode' ),
+			array( 'zenburn', 'zenburn', 'Zenburn' ),
+		);
+
 		?>
 		<select title="Select theme" id="rtsyntax-theme" name="rtsyntax_options[theme]">
-			<option value="default"<?php selected( $options['theme'], 'default', true ); ?>><?php esc_html_e( 'Default', 'rtsyntax' ); ?></option>
-			<option value="arta"<?php selected( $options['theme'], 'arta', true ); ?>><?php esc_html_e( 'Arta', 'rtsyntax' ); ?></option>
-			<option value="ascetic"<?php selected( $options['theme'], 'ascetic', true ); ?>><?php esc_html_e( 'Ascetic', 'rtsyntax' ); ?></option>
-			<option value="brown_paper"<?php selected( $options['theme'], 'brown-paper', true ); ?>><?php esc_html_e( 'Brown Paper', 'rtsyntax' ); ?></option>
-			<option value="dark"<?php selected( $options['theme'], 'dark', true ); ?>><?php esc_html_e( 'Dark', 'rtsyntax' ); ?></option>
-			<option value="far"<?php selected( $options['theme'], 'far', true ); ?>><?php esc_html_e( 'FAR', 'rtsyntax' ); ?></option>
-			<option value="github"<?php selected( $options['theme'], 'github', true ); ?>><?php esc_html_e( 'GitHub', 'rtsyntax' ); ?></option>
-			<option value="googlecode"<?php selected( $options['theme'], 'googlecode', true ); ?>><?php esc_html_e( 'Google Code', 'rtsyntax' ); ?></option>
-			<option value="idea"<?php selected( $options['theme'], 'idea', true ); ?>><?php esc_html_e( 'IDEA', 'rtsyntax' ); ?></option>
-			<option value="ir_black"<?php selected( $options['theme'], 'ir-black', true ); ?>><?php esc_html_e( 'IR Black', 'rtsyntax' ); ?></option>
-			<option value="magula"<?php selected( $options['theme'], 'magula', true ); ?>><?php esc_html_e( 'Magula', 'rtsyntax' ); ?></option>
-			<option value="monokai"<?php selected( $options['theme'], 'monokai', true ); ?>><?php esc_html_e( 'Monokai', 'rtsyntax' ); ?></option>
-			<option value="pojoaque"<?php selected( $options['theme'], 'pojoaque', true ); ?>><?php esc_html_e( 'Pojoaque', 'rtsyntax' ); ?></option>
-			<option value="rainbow"<?php selected( $options['theme'], 'rainbow', true ); ?>><?php esc_html_e( 'Rainbow', 'rtsyntax' ); ?></option>
-			<option value="school_book"<?php selected( $options['theme'], 'school-book', true ); ?>><?php esc_html_e( 'School Book', 'rtsyntax' ); ?></option>
-			<option value="solarized_dark"<?php selected( $options['theme'], 'solarized-dark', true ); ?>><?php esc_html_e( 'Solarized Dark', 'rtsyntax' ); ?></option>
-			<option value="solarized_light"<?php selected( $options['theme'], 'solarized-light', true ); ?>><?php esc_html_e( 'Solarized Light', 'rtsyntax' ); ?></option>
-			<option value="sunburst"<?php selected( $options['theme'], 'sunburst', true ); ?>><?php esc_html_e( 'Sunburst', 'rtsyntax' ); ?></option>
-			<option value="tomorrow-night-blue"<?php selected( $options['theme'], 'tomorrow-night-blue', true ); ?>><?php esc_html_e( 'Tomorrow Night Blue', 'rtsyntax' ); ?></option>
-			<option value="tomorrow-night-bright"<?php selected( $options['theme'], 'tomorrow-night-bright', true ); ?>><?php esc_html_e( 'Tomorrow Night Bright', 'rtsyntax' ); ?></option>
-			<option value="tomorrow-night-eighties"<?php selected( $options['theme'], 'tomorrow-night-eighties', true ); ?>><?php esc_html_e( 'Tomorrow Night Eighties', 'rtsyntax' ); ?></option>
-			<option value="tomorrow-night"<?php selected( $options['theme'], 'tomorrow-night', true ); ?>><?php esc_html_e( 'Tomorrow Night', 'rtsyntax' ); ?></option>
-			<option value="tomorrow"<?php selected( $options['theme'], 'tomorrow', true ); ?>><?php esc_html_e( 'Tomorrow', 'rtsyntax' ); ?></option>
-			<option value="vs"<?php selected( $options['theme'], 'vs', true ); ?>><?php esc_html_e( 'Visual Studio', 'rtsyntax' ); ?></option>
-			<option value="xcode"<?php selected( $options['theme'], 'xcode', true ); ?>><?php esc_html_e( 'XCode', 'rtsyntax' ); ?></option>
-			<option value="zenburn"<?php selected( $options['theme'], 'zenburn', true ); ?>><?php esc_html_e( 'Zenburn', 'rtsyntax' ); ?></option>
+			<?php
+			foreach ( $themes as $theme ) {
+				?>
+				<option value="<?php esc_attr_e( $theme[0] ) ?>" <?php selected( $options['theme'], $theme[1] ); ?>><?php esc_html_e( $theme[2], 'rtsyntax' ); ?></option>
+				<?php
+			}
+			?>
 		</select>
 		<?php
 	}
