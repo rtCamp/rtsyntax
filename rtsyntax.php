@@ -75,40 +75,40 @@ class rtSyntax {
 		$options = get_option( 'rtsyntax_options' );
 
 		$themes = array(
-			array( 'default', 'default', 'Default' ),
-			array( 'arta', 'arta', 'Arta' ),
-			array( 'ascetic', 'ascetic', 'Ascetic' ),
-			array( 'brown_paper', 'brown-paper', 'Brown Paper' ),
-			array( 'dark', 'dark', 'Dark' ),
-			array( 'far', 'far', 'FAR' ),
-			array( 'github', 'github', 'GitHub' ),
-			array( 'googlecode', 'googlecode', 'Google Code' ),
-			array( 'idea', 'idea', 'IDEA' ),
-			array( 'ir_black', 'ir-black', 'IR Black' ),
-			array( 'magula', 'magula', 'Magula' ),
-			array( 'monokai', 'monokai', 'Monokai' ),
-			array( 'pojoaque', 'pojoaque', 'Pojoaque' ),
-			array( 'rainbow', 'rainbow', 'Rainbow' ),
-			array( 'school_book', 'school-book', 'School Book' ),
-			array( 'solarized_dark', 'solarized-dark', 'Solarized Dark' ),
-			array( 'solarized_light', 'solarized-light', 'Solarized Light' ),
-			array( 'sunburst', 'sunburst', 'Sunburst' ),
-			array( 'tomorrow-night-blue', 'tomorrow-night-blue', 'Tomorrow Night Blue' ),
-			array( 'tomorrow-night-bright', 'tomorrow-night-bright', 'Tomorrow Night Bright' ),
-			array( 'tomorrow-night-eighties', 'tomorrow-night-eighties', 'Tomorrow Night Eighties' ),
-			array( 'tomorrow-night', 'tomorrow-night', 'Tomorrow Night' ),
-			array( 'tomorrow', 'tomorrow', 'Tomorrow' ),
-			array( 'vs', 'vs', 'Visual Studio' ),
-			array( 'xcode', 'xcode', 'XCode' ),
-			array( 'zenburn', 'zenburn', 'Zenburn' ),
+			'default'                 => 'Default',
+			'arta'                    => 'Arta',
+			'ascetic'                 => 'Ascetic',
+			'brown-paper'             => 'Brown Paper',
+			'dark'                    => 'Dark',
+			'far'                     => 'FAR',
+			'github'                  => 'GitHub',
+			'googlecode'              => 'Google Code',
+			'idea'                    => 'IDEA',
+			'ir-black'                => 'IR Black',
+			'magula'                  => 'Magula',
+			'monokai'                 => 'Monokai',
+			'pojoaque'                => 'Pojoaque',
+			'rainbow'                 => 'Rainbow',
+			'school-book'             => 'School Book',
+			'solarized-dark'          => 'Solarized Dark',
+			'solarized-light'         => 'Solarized Light',
+			'sunburst'                => 'Sunburst',
+			'tomorrow-night-blue'     => 'Tomorrow Night Blue',
+			'tomorrow-night-bright'   => 'Tomorrow Night Bright',
+			'tomorrow-night-eighties' => 'Tomorrow Night Eighties',
+			'tomorrow-night'          => 'Tomorrow Night',
+			'tomorrow'                => 'Tomorrow',
+			'vs'                      => 'Visual Studio',
+			'xcode'                   => 'XCode',
+			'zenburn'                 => 'Zenburn',
 		);
 
 		?>
 		<select title="Select theme" id="rtsyntax-theme" name="rtsyntax_options[theme]">
 			<?php
-			foreach ( $themes as $theme ) {
+			foreach ( $themes as $value => $label ) {
 				?>
-				<option value="<?php esc_attr_e( $theme[0] ) ?>" <?php selected( $options['theme'], $theme[1] ); ?>><?php esc_html_e( $theme[2], 'rtsyntax' ); ?></option>
+				<option value="<?php esc_attr_e( $value ) ?>" <?php selected( $options['theme'], $value ); ?>><?php esc_html_e( $label, 'rtsyntax' ); ?></option>
 				<?php
 			}
 			?>
