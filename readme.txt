@@ -75,3 +75,7 @@ Its just that we are hyperactive on our own forum!
 = 1.0.3 =
 
 * Update compatible upto
+
+= 1.1.0 =
+
+* Gutenberg block: `rtSyntax`
