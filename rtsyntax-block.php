@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 
 /**
- * load required css and js files for gutenberg editor
+ * Load required css and js files for gutenberg editor
  */
 function rtsyntax_block_enqueue_editor_assets() {
 	$options = get_option( 'rtsyntax_options' );
@@ -24,7 +24,7 @@ function rtsyntax_block_enqueue_editor_assets() {
 	);
 
 	/**
-	 * theme file for code editor
+	 * Theme file for code editor
 	 */
 	wp_enqueue_style(
 		'highlight',
@@ -32,7 +32,7 @@ function rtsyntax_block_enqueue_editor_assets() {
 	);
 
 	/**
-	 * theme file for block view
+	 * Theme file for block view
 	 */
 	wp_enqueue_style(
 		'editor',

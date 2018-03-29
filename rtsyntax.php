@@ -11,7 +11,6 @@
  * Text Domain: rtsyntax
  *
  * @package rtsyntax
- *
  */
 
 /**
@@ -25,7 +24,7 @@ define( 'RTSYNTAX_DIR_URL', plugin_dir_url( __FILE__ ) );
 class rtSyntax {
 
 	/**
-	 * rtSyntax constructor.
+	 * RtSyntax constructor.
 	 */
 	public function __construct() {
 
@@ -44,7 +43,7 @@ class rtSyntax {
 	}
 
 	/**
-	 * add option if doesn't exist
+	 * Add option if doesn't exist
 	 */
 	public function initialize_option() {
 		if ( ! get_option( 'rtsyntax_options' ) ) {
@@ -75,32 +74,32 @@ class rtSyntax {
 		$options = get_option( 'rtsyntax_options' );
 
 		$themes = array(
-			'default'                 => 'Default',
-			'arta'                    => 'Arta',
-			'ascetic'                 => 'Ascetic',
-			'brown-paper'             => 'Brown Paper',
-			'dark'                    => 'Dark',
-			'far'                     => 'FAR',
-			'github'                  => 'GitHub',
-			'googlecode'              => 'Google Code',
-			'idea'                    => 'IDEA',
-			'ir-black'                => 'IR Black',
-			'magula'                  => 'Magula',
-			'monokai'                 => 'Monokai',
-			'pojoaque'                => 'Pojoaque',
-			'rainbow'                 => 'Rainbow',
-			'school-book'             => 'School Book',
-			'solarized-dark'          => 'Solarized Dark',
-			'solarized-light'         => 'Solarized Light',
-			'sunburst'                => 'Sunburst',
-			'tomorrow-night-blue'     => 'Tomorrow Night Blue',
-			'tomorrow-night-bright'   => 'Tomorrow Night Bright',
-			'tomorrow-night-eighties' => 'Tomorrow Night Eighties',
-			'tomorrow-night'          => 'Tomorrow Night',
-			'tomorrow'                => 'Tomorrow',
-			'vs'                      => 'Visual Studio',
-			'xcode'                   => 'XCode',
-			'zenburn'                 => 'Zenburn',
+			'default'                 => __( 'Default', 'rtsyntax' ),
+			'arta'                    => __( 'Arta', 'rtsyntax' ),
+			'ascetic'                 => __( 'Ascetic', 'rtsyntax' ),
+			'brown-paper'             => __( 'Brown Paper', 'rtsyntax' ),
+			'dark'                    => __( 'Dark', 'rtsyntax' ),
+			'far'                     => __( 'FAR', 'rtsyntax' ),
+			'github'                  => __( 'GitHub', 'rtsyntax' ),
+			'googlecode'              => __( 'Google Code', 'rtsyntax' ),
+			'idea'                    => __( 'IDEA', 'rtsyntax' ),
+			'ir-black'                => __( 'IR Black', 'rtsyntax' ),
+			'magula'                  => __( 'Magula', 'rtsyntax' ),
+			'monokai'                 => __( 'Monokai', 'rtsyntax' ),
+			'pojoaque'                => __( 'Pojoaque', 'rtsyntax' ),
+			'rainbow'                 => __( 'Rainbow', 'rtsyntax' ),
+			'school-book'             => __( 'School Book', 'rtsyntax' ),
+			'solarized-dark'          => __( 'Solarized Dark', 'rtsyntax' ),
+			'solarized-light'         => __( 'Solarized Light', 'rtsyntax' ),
+			'sunburst'                => __( 'Sunburst', 'rtsyntax' ),
+			'tomorrow-night-blue'     => __( 'Tomorrow Night Blue', 'rtsyntax' ),
+			'tomorrow-night-bright'   => __( 'Tomorrow Night Bright', 'rtsyntax' ),
+			'tomorrow-night-eighties' => __( 'Tomorrow Night Eighties', 'rtsyntax' ),
+			'tomorrow-night'          => __( 'Tomorrow Night', 'rtsyntax' ),
+			'tomorrow'                => __( 'Tomorrow', 'rtsyntax' ),
+			'vs'                      => __( 'Visual Studio', 'rtsyntax' ),
+			'xcode'                   => __( 'XCode', 'rtsyntax' ),
+			'zenburn'                 => __( 'Zenburn', 'rtsyntax' ),
 		);
 
 		?>
@@ -108,7 +107,7 @@ class rtSyntax {
 			<?php
 			foreach ( $themes as $value => $label ) {
 				?>
-				<option value="<?php esc_attr_e( $value ) ?>" <?php selected( $options['theme'], $value ); ?>><?php esc_html_e( $label, 'rtsyntax' ); ?></option>
+				<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $options['theme'], $value ); ?>><?php echo esc_html( $value ); ?></option>
 				<?php
 			}
 			?>
@@ -206,7 +205,6 @@ class rtSyntax {
 
 }
 
-/** @var rtSyntax $rtsyntax */
 $rtsyntax = new rtSyntax();
 
 /**
