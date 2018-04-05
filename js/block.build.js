@@ -465,10 +465,10 @@ var Edit = function (_Component) {
 			// Show actual highlighted code when not in focus
 			!isSelected && wp.element.createElement(
 				'pre',
-				null,
+				{ className: 'rtsyntax-admin-pre' },
 				wp.element.createElement(
 					'code',
-					null,
+					{ className: 'rtsyntax-admin-code', style: { display: 'inline-block' } },
 					showContent ? updateMessage : '',
 					showContent ? state.html_content : 'Click here to add code ....'
 				)
