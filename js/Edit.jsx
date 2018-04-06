@@ -320,7 +320,7 @@ class Edit extends Component {
 			// Show actual highlighted code when not in focus
 			!isSelected && (
 				<pre className={'rtsyntax-admin-pre'}>
-					<code className={'rtsyntax-admin-code'} style={{display: 'inline-block'}}>
+					<code>
 						{showContent ? updateMessage : ''}
 						{showContent ? state.html_content : 'Click here to add code ....'}
 					</code>

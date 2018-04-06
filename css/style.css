@@ -1,0 +1,20 @@
+pre.rtsyntax-admin-pre, pre.rtsyntax-pre {
+	margin: 0;
+	padding: 0;
+}
+
+pre.rtsyntax-admin-pre > code {
+	display: block;
+	padding: 0;
+	margin: 0;
+}
+
+pre.rtsyntax-admin-pre > code > div.hljs {
+	padding: 1em;
+}
+
+
+pre.rtsyntax-pre > code.hljs {
+	padding: 1em;
+	margin: 0;
+}

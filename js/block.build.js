@@ -468,7 +468,7 @@ var Edit = function (_Component) {
 				{ className: 'rtsyntax-admin-pre' },
 				wp.element.createElement(
 					'code',
-					{ className: 'rtsyntax-admin-code', style: { display: 'inline-block' } },
+					null,
 					showContent ? updateMessage : '',
 					showContent ? state.html_content : 'Click here to add code ....'
 				)

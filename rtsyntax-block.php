@@ -40,6 +40,14 @@ function rtsyntax_block_enqueue_editor_assets() {
 	);
 
 	/**
+	 * Common style for both, admin and front-end
+	 */
+	wp_enqueue_style(
+		'rtsyntax-common-style',
+		RTSYNTAX_DIR_URL . '/css/style.css'
+	);
+
+	/**
 	 * List of themes available for user to select
 	 * Object will be available inside js at front-end
 	 */

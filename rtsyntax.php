@@ -174,6 +174,7 @@ class rtSyntax {
 	public function enqueue() {
 		$options = get_option( 'rtsyntax_options' );
 		wp_enqueue_style( 'rtsyntax-' . $options['theme'], RTSYNTAX_DIR_URL . '/css/' . $options['theme'] . '.css' );
+		wp_enqueue_style( 'rtsyntax-common-style', RTSYNTAX_DIR_URL . '/css/style.css' );
 		wp_enqueue_script( 'rtsyntax', RTSYNTAX_DIR_URL . '/js/highlight.js', array(), null, true );
 	}
 
@@ -200,7 +201,7 @@ class rtSyntax {
 	public function convert_pres( $content ) {
 		$content = str_replace( '<pre>', '<pre class="no-highlight">', $content );
 
-		return preg_replace( '/<pre(.*)>(.*)<\/pre>/isU', '<pre style="max-height: 60em;"><code $1>$2</code></pre>', $content );
+		return preg_replace( '/<pre(.*)>(.*)<\/pre>/isU', '<pre class="rtsyntax-pre"><code $1>$2</code></pre>', $content );
 	}
 
 }
