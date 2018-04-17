@@ -6,7 +6,7 @@ let worker = null;
 
 // Initialize the debug
 let debug = false;
-if (highlight_obj.debug === '1') {
+if ('1' === highlight_obj.debug) {
 	debug = true;
 }
 
@@ -27,7 +27,6 @@ class Edit extends Component {
 		let temp_txtarea = document.createElement('textarea');
 		temp_txtarea.value = this.props.attributes.content;
 		document.body.appendChild(temp_txtarea);
-
 
 
 		// Init states
@@ -80,7 +79,7 @@ class Edit extends Component {
 	// Prevent default tab behaviour in code textarea
 	handleTabKey(e) {
 
-		if (!e.keyCode || e.keyCode !== 9) {
+		if (!e.keyCode || 9 !== e.keyCode) {
 			this.setAreaHeight(e);
 			return;
 		}
@@ -105,12 +104,10 @@ class Edit extends Component {
 	// Change code language to highlight
 	changeLanguage(e) {
 
-		this.setState(
-			{
-				language      : e,
-				contentChanged: true,
-			}
-		);
+		this.setState({
+			language      : e,
+			contentChanged: true,
+		});
 
 	}
 
@@ -118,15 +115,15 @@ class Edit extends Component {
 	getHighlightedCode(content = null, language = null, cb = null) {
 		const {state} = this;
 
-		content = content === null ? state.content : content;
-		language = language === null ? state.language : language;
+		content = null === content ? state.content : content;
+		language = null === language ? state.language : language;
 		let html_content = '';
 
-		if (typeof(Worker) !== "undefined" && worker === null) {
+		if (typeof(Worker) !== "undefined" && null === worker) {
 			worker = new Worker(highlight_obj.path + '/js/highlight_worker.build.js');
 		}
 
-		if (worker !== null) {
+		if (null !== worker) {
 
 			worker.postMessage({
 				language: language,
@@ -138,7 +135,6 @@ class Edit extends Component {
 				if (event.data.value.length !== 0) {
 					html_content = <div
 						className={'hljs'}
-						style={{maxHeight:'60em'}}
 						dangerouslySetInnerHTML={{
 							__html: event.data.value
 						}}
@@ -166,7 +162,6 @@ class Edit extends Component {
 			if (nonworker_content.value.length !== 0) {
 				html_content = <div
 					className={'hljs'}
-					style={{maxHeight:'60em'}}
 					dangerouslySetInnerHTML={{
 						__html: nonworker_content.value
 					}}
@@ -217,7 +212,7 @@ class Edit extends Component {
 
 			this.setState((prevState) => {
 
-				if (prevState.status === 'danger') {
+				if ('danger' === prevState.status) {
 					setTimeout(() => {
 
 						this.setState({
@@ -277,19 +272,14 @@ class Edit extends Component {
 		);
 
 		let updateMessage = state.updateMessage && debug ? (
-			<div style={{
-				padding        : '5px',
-				marginBottom   : '5px',
-				backgroundColor: state.status === 'danger' ? '#ff000085' : 'rgba(5, 162, 104, 0.71)',
-				color          : 'white',
-				borderRadius   : '4px',
-				paddingLeft    : '1.2em'
+			<div className={'rtsyntax-code-update-message'} style={{
+				backgroundColor: 'danger' === state.status ? '#ff000085' : 'rgba(5, 162, 104, 0.71)',
 			}}>
 				{state.updateMessage}
 			</div>
 		) : '';
 
-		let showContent = state.html_content !== undefined && state.html_content.length !== undefined && state.html_content.length > 0;
+		let showContent = undefined !== state.html_content && state.html_content.length !== undefined && state.html_content.length > 0;
 
 		// return content
 		return [
@@ -308,7 +298,7 @@ class Edit extends Component {
 						onChange={this.changeStateContent}
 						onKeyDown={this.handleTabKey}
 						className={'form-control'}
-						style={{width: '100%', maxHeight: '60em' , minHeight: '20em', height: state.areaHeight}}
+						style={{height: state.areaHeight}}
 						placeholder={__("Enter code here", 'rtsyntax') + " ... "}
 					>
 						{state.content}

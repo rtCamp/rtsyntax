@@ -13,11 +13,13 @@ const {__} = wp.i18n;
 registerBlockType(
 	'rtsyntax/rtsyntax-block',
 	{
-		title      : __('rtSyntax', 'rtsyntax'),
-		category   : 'formatting',
-		icon       : 'editor-code',
-		keywords   : [__('highlight', 'rtsyntax'), __('code', 'rtsyntax')],
-		supportHTML: false,
+		title   : __('rtSyntax', 'rtsyntax'),
+		category: 'formatting',
+		icon    : 'editor-code',
+		keywords: [__('highlight', 'rtsyntax'), __('code', 'rtsyntax')],
+		supports: {
+			html: false,
+		},
 
 		attributes: {
 
@@ -29,15 +31,12 @@ registerBlockType(
 
 			// to store only text content
 			content: {
-				type   : 'string',
-				default: '',
+				type    : 'string',
+				selector: 'pre',
+				source  : 'children',
+				default : '',
 			},
 
-			// to store textarea content widht
-			areaHeight: {
-				type   : 'string',
-				default: '',
-			},
 		},
 
 		// Edit is located inside /block/ directory

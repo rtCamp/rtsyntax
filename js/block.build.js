@@ -87,7 +87,9 @@ registerBlockType('rtsyntax/rtsyntax-block', {
 	category: 'formatting',
 	icon: 'editor-code',
 	keywords: [__('highlight', 'rtsyntax'), __('code', 'rtsyntax')],
-	supportHTML: false,
+	supports: {
+		html: false
+	},
 
 	attributes: {
 
@@ -100,14 +102,11 @@ registerBlockType('rtsyntax/rtsyntax-block', {
 		// to store only text content
 		content: {
 			type: 'string',
-			default: ''
-		},
-
-		// to store textarea content widht
-		areaHeight: {
-			type: 'string',
+			selector: 'pre',
+			source: 'children',
 			default: ''
 		}
+
 	},
 
 	// Edit is located inside /block/ directory
@@ -138,7 +137,7 @@ var worker = null;
 
 // Initialize the debug
 var debug = false;
-if (highlight_obj.debug === '1') {
+if ('1' === highlight_obj.debug) {
 	debug = true;
 }
 
@@ -219,7 +218,7 @@ var Edit = function (_Component) {
 		key: 'handleTabKey',
 		value: function handleTabKey(e) {
 
-			if (!e.keyCode || e.keyCode !== 9) {
+			if (!e.keyCode || 9 !== e.keyCode) {
 				this.setAreaHeight(e);
 				return;
 			}
@@ -263,15 +262,15 @@ var Edit = function (_Component) {
 			var state = this.state;
 
 
-			content = content === null ? state.content : content;
-			language = language === null ? state.language : language;
+			content = null === content ? state.content : content;
+			language = null === language ? state.language : language;
 			var html_content = '';
 
-			if (typeof Worker !== "undefined" && worker === null) {
+			if (typeof Worker !== "undefined" && null === worker) {
 				worker = new Worker(highlight_obj.path + '/js/highlight_worker.build.js');
 			}
 
-			if (worker !== null) {
+			if (null !== worker) {
 
 				worker.postMessage({
 					language: language,
@@ -283,7 +282,6 @@ var Edit = function (_Component) {
 					if (event.data.value.length !== 0) {
 						html_content = wp.element.createElement('div', {
 							className: 'hljs',
-							style: { maxHeight: '60em' },
 							dangerouslySetInnerHTML: {
 								__html: event.data.value
 							}
@@ -308,7 +306,6 @@ var Edit = function (_Component) {
 				if (nonworker_content.value.length !== 0) {
 					html_content = wp.element.createElement('div', {
 						className: 'hljs',
-						style: { maxHeight: '60em' },
 						dangerouslySetInnerHTML: {
 							__html: nonworker_content.value
 						}
@@ -365,7 +362,7 @@ var Edit = function (_Component) {
 
 				_this2.setState(function (prevState) {
 
-					if (prevState.status === 'danger') {
+					if ('danger' === prevState.status) {
 						setTimeout(function () {
 
 							_this2.setState({
@@ -422,18 +419,13 @@ var Edit = function (_Component) {
 
 			var updateMessage = state.updateMessage && debug ? wp.element.createElement(
 				'div',
-				{ style: {
-						padding: '5px',
-						marginBottom: '5px',
-						backgroundColor: state.status === 'danger' ? '#ff000085' : 'rgba(5, 162, 104, 0.71)',
-						color: 'white',
-						borderRadius: '4px',
-						paddingLeft: '1.2em'
+				{ className: 'rtsyntax-code-update-message', style: {
+						backgroundColor: 'danger' === state.status ? '#ff000085' : 'rgba(5, 162, 104, 0.71)'
 					} },
 				state.updateMessage
 			) : '';
 
-			var showContent = state.html_content !== undefined && state.html_content.length !== undefined && state.html_content.length > 0;
+			var showContent = undefined !== state.html_content && state.html_content.length !== undefined && state.html_content.length > 0;
 
 			// return content
 			return [
@@ -455,7 +447,7 @@ var Edit = function (_Component) {
 						onChange: this.changeStateContent,
 						onKeyDown: this.handleTabKey,
 						className: 'form-control',
-						style: { width: '100%', maxHeight: '60em', minHeight: '20em', height: state.areaHeight },
+						style: { height: state.areaHeight },
 						placeholder: __("Enter code here", 'rtsyntax') + " ... "
 					},
 					state.content
@@ -529,10 +521,12 @@ var Save = function (_Component) {
 	_createClass(Save, [{
 		key: "render",
 		value: function render() {
+			var attributes = this.props.attributes;
+
 			return wp.element.createElement(
 				"pre",
-				{ className: this.props.attributes.language },
-				this.props.attributes.content
+				{ className: attributes.language },
+				attributes.content
 			);
 		}
 	}]);

@@ -13,7 +13,8 @@ class Save extends Component {
 
 	// Render the output of save method
 	render() {
-		return <pre className={this.props.attributes.language}>{this.props.attributes.content}</pre>;
+		const {attributes} = this.props;
+		return <pre className={attributes.language}>{attributes.content}</pre>;
 	}
 
 }

@@ -1,5 +1,4 @@
 pre.rtsyntax-admin-pre, pre.rtsyntax-pre {
-	margin: 0;
 	padding: 0;
 }
 
@@ -11,10 +10,24 @@ pre.rtsyntax-admin-pre > code {
 
 pre.rtsyntax-admin-pre > code > div.hljs {
 	padding: 1em;
+	max-height: 60em;
+}
+
+pre.rtsyntax-admin-pre > code > div.rtsyntax-code-update-message {
+	padding: 5px 5px 5px 1.2em;
+	margin-bottom: 5px;
+	color: #ffffff;
+	border-radius: 4px;
 }
 
 
 pre.rtsyntax-pre > code.hljs {
 	padding: 1em;
 	margin: 0;
+}
+
+div.rtsyntax-edit textarea {
+	width: 100%;
+	max-height: 60em;
+	min-height: 20em;
 }
