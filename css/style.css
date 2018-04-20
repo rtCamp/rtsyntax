@@ -6,6 +6,7 @@ pre.rtsyntax-admin-pre > code {
 	display: block;
 	padding: 0;
 	margin: 0;
+	background: none;
 }
 
 pre.rtsyntax-admin-pre > code > div.hljs {
