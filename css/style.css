@@ -11,6 +11,7 @@ pre.rtsyntax-admin-pre > code {
 pre.rtsyntax-admin-pre > code > div.hljs {
 	padding: 1em;
 	max-height: 60em;
+	font-size: 100%;
 }
 
 pre.rtsyntax-admin-pre > code > div.rtsyntax-code-update-message {
@@ -24,6 +25,7 @@ pre.rtsyntax-admin-pre > code > div.rtsyntax-code-update-message {
 pre.rtsyntax-pre > code.hljs {
 	padding: 1em;
 	margin: 0;
+	font-size: 100%;
 }
 
 div.rtsyntax-edit textarea {
