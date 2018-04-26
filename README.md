@@ -6,7 +6,7 @@
 
 * **Donate Link:** http://rtcamp.com/donate/
 
-* **Tested upto:** 4.9.4
+* **Tested upto:** 4.9.5
 
 A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
 

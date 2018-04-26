@@ -2,7 +2,7 @@
 Contributors: rtcamp, rahul286, JoshuaAbenazer, harishchaudhari, sid177, montu3366
 Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
 Requires at least: 3.0
-Tested up to: 4.9.4
+Tested up to: 4.9.5
 Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

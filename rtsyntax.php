@@ -4,6 +4,7 @@
  * Plugin URI: https://wordpress.org/plugins/rtsyntax/
  * Author: rtCamp
  * Author URI: https://rtcamp.com
+ * Tested up to: 4.9.5
  * Version: 1.1.0
  * Description: A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress.
  * Contributors: rtcamp, rahul286, JoshuaAbenazer, sid177, montu3366
