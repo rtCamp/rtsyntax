@@ -78,4 +78,4 @@ Its just that we are hyperactive on our own forum!
 
 = 1.1.0 =
 
-* Gutenberg block: `rtSyntax`
+* Created `rtSyntax` gutenberg block
