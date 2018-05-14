@@ -111,8 +111,14 @@ class Edit extends Component {
 
 	}
 
-	// get highlighted code using highlight.js
-	getHighlightedCode(content = null, language = null, cb = null) {
+	/**
+	 * get highlighted code using highlight.js
+	 *
+	 * @param content: content to highlight
+	 * @param language: highlight language
+	 * @param callback: callback function to perform actions after highlight
+	 */
+	getHighlightedCode(content = null, language = null, callback = null) {
 		const {state} = this;
 
 		content = null === content ? state.content : content;
@@ -144,15 +150,15 @@ class Edit extends Component {
 					html_content = [];
 				}
 
-				if (typeof(cb) === 'function') {
-					cb(true, event.data.language, content, html_content, true);
+				if (typeof(callback) === 'function') {
+					callback(true, event.data.language, content, html_content, true);
 				}
 
 
 			};
 
-			if (typeof(cb) === 'function') {
-				cb(false, null, null, true);
+			if (typeof(callback) === 'function') {
+				callback(false, null, null, true);
 			}
 
 		} else {
@@ -171,8 +177,8 @@ class Edit extends Component {
 				html_content = [];
 			}
 
-			if (typeof(cb) === 'function') {
-				cb(true, language, content, html_content, false);
+			if (typeof(callback) === 'function') {
+				callback(true, language, content, html_content, false);
 			}
 
 		}
