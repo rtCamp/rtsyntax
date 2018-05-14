@@ -6,7 +6,7 @@ let worker = null;
 
 // Initialize the debug
 let debug = false;
-if ('1' === highlight_obj.debug) {
+if ('1' === rtSyntax.debug) {
 	debug = true;
 }
 
@@ -126,7 +126,7 @@ class Edit extends Component {
 		let html_content = '';
 
 		if (typeof(Worker) !== "undefined" && null === worker) {
-			worker = new Worker(highlight_obj.path + '/js/highlight_worker.build.js');
+			worker = new Worker(rtSyntax.path + '/js/highlight_worker.build.js');
 		}
 
 		if (null !== worker) {
@@ -318,7 +318,7 @@ class Edit extends Component {
 				<pre className='rtsyntax-admin-pre'>
 					<code>
 						{showContent ? updateMessage : ''}
-						{showContent ? state.html_content : 'Click here to add code ....'}
+						{showContent ? state.html_content : __('Click here to add code ', 'rtsyntax') + '....'}
 					</code>
 				</pre>
 			)
