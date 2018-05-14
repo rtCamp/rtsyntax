@@ -15,10 +15,14 @@ const {Component} = wp.element;
 const {SelectControl} = wp.components;
 const {__} = wp.i18n;
 
-// Edit class for edit method of registeredBlockType
+/**
+ * Edit class for edit method of registeredBlockType
+ */
 class Edit extends Component {
 
-	// Constructor
+	/**
+	 * Constructor
+	 */
 	constructor() {
 
 		super(...arguments);
@@ -55,7 +59,11 @@ class Edit extends Component {
 	}
 
 
-	// handle change of content which is changed everytime
+	/**
+	 * handle change of content which is changed everytime
+	 *
+	 * @param e: event object
+	 */
 	changeStateContent(e) {
 
 		this.setState({
@@ -67,7 +75,11 @@ class Edit extends Component {
 	}
 
 
-	// set area height when textarea is focused
+	/**
+	 * set area height when textarea is focused
+	 *
+	 * @param e: event object
+	 */
 	setAreaHeight(e) {
 		this.setState({
 			areaHeight    : e.target.scrollHeight + 'px',
@@ -76,7 +88,11 @@ class Edit extends Component {
 	}
 
 
-	// Prevent default tab behaviour in code textarea
+	/**
+	 * Prevent default tab behaviour in code textarea
+	 *
+	 * @param e: event object
+	 */
 	handleTabKey(e) {
 
 		if (!e.keyCode || 9 !== e.keyCode) {
@@ -101,7 +117,11 @@ class Edit extends Component {
 
 	}
 
-	// Change code language to highlight
+	/**
+	 * Change code language to highlight
+	 *
+	 * @param e: event object
+	 */
 	changeLanguage(e) {
 
 		this.setState({
@@ -186,7 +206,9 @@ class Edit extends Component {
 	}
 
 
-	// update attribute content and highlight code
+	/**
+	 * update attribute content and highlight code
+	 */
 	updateAttrContent() {
 
 		const {setAttributes} = this.props;
@@ -254,7 +276,11 @@ class Edit extends Component {
 	}
 
 
-	// Render the output of edit method
+	/**
+	 * Render the output of edit method
+	 *
+	 * @returns array
+	 */
 	render() {
 
 		const {attributes, isSelected} = this.props;
@@ -325,6 +351,9 @@ class Edit extends Component {
 		];
 	}
 
+	/**
+	 * Function to free worker object
+	 */
 	componentWillUnmount() {
 
 		worker = null;
