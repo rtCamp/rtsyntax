@@ -137,7 +137,7 @@ var worker = null;
 
 // Initialize the debug
 var debug = false;
-if ('1' === highlight_obj.debug) {
+if ('1' === rtSyntax.debug) {
 	debug = true;
 }
 
@@ -146,12 +146,16 @@ var Component = wp.element.Component;
 var SelectControl = wp.components.SelectControl;
 var __ = wp.i18n.__;
 
-// Edit class for edit method of registeredBlockType
+/**
+ * Edit class for edit method of registeredBlockType
+ */
 
 var Edit = function (_Component) {
 	_inherits(Edit, _Component);
 
-	// Constructor
+	/**
+  * Constructor
+  */
 	function Edit() {
 		_classCallCheck(this, Edit);
 
@@ -187,7 +191,11 @@ var Edit = function (_Component) {
 		return _this;
 	}
 
-	// handle change of content which is changed everytime
+	/**
+  * handle change of content which is changed everytime
+  *
+  * @param e: event object
+  */
 
 
 	_createClass(Edit, [{
@@ -201,7 +209,11 @@ var Edit = function (_Component) {
 			});
 		}
 
-		// set area height when textarea is focused
+		/**
+   * set area height when textarea is focused
+   *
+   * @param e: event object
+   */
 
 	}, {
 		key: 'setAreaHeight',
@@ -212,7 +224,11 @@ var Edit = function (_Component) {
 			});
 		}
 
-		// Prevent default tab behaviour in code textarea
+		/**
+   * Prevent default tab behaviour in code textarea
+   *
+   * @param e: event object
+   */
 
 	}, {
 		key: 'handleTabKey',
@@ -239,7 +255,11 @@ var Edit = function (_Component) {
 			});
 		}
 
-		// Change code language to highlight
+		/**
+   * Change code language to highlight
+   *
+   * @param e: event object
+   */
 
 	}, {
 		key: 'changeLanguage',
@@ -251,14 +271,20 @@ var Edit = function (_Component) {
 			});
 		}
 
-		// get highlighted code using highlight.js
+		/**
+   * get highlighted code using highlight.js
+   *
+   * @param content: content to highlight
+   * @param language: highlight language
+   * @param callback: callback function to perform actions after highlight
+   */
 
 	}, {
 		key: 'getHighlightedCode',
 		value: function getHighlightedCode() {
 			var content = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 			var language = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-			var cb = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+			var callback = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
 			var state = this.state;
 
 
@@ -267,7 +293,7 @@ var Edit = function (_Component) {
 			var html_content = '';
 
 			if (typeof Worker !== "undefined" && null === worker) {
-				worker = new Worker(highlight_obj.path + '/js/highlight_worker.build.js');
+				worker = new Worker(rtSyntax.path + '/js/highlight_worker.build.js');
 			}
 
 			if (null !== worker) {
@@ -291,13 +317,13 @@ var Edit = function (_Component) {
 						html_content = [];
 					}
 
-					if (typeof cb === 'function') {
-						cb(true, event.data.language, content, html_content, true);
+					if (typeof callback === 'function') {
+						callback(true, event.data.language, content, html_content, true);
 					}
 				};
 
-				if (typeof cb === 'function') {
-					cb(false, null, null, true);
+				if (typeof callback === 'function') {
+					callback(false, null, null, true);
 				}
 			} else {
 
@@ -315,13 +341,15 @@ var Edit = function (_Component) {
 					html_content = [];
 				}
 
-				if (typeof cb === 'function') {
-					cb(true, language, content, html_content, false);
+				if (typeof callback === 'function') {
+					callback(true, language, content, html_content, false);
 				}
 			}
 		}
 
-		// update attribute content and highlight code
+		/**
+   * update attribute content and highlight code
+   */
 
 	}, {
 		key: 'updateAttrContent',
@@ -392,7 +420,11 @@ var Edit = function (_Component) {
 			});
 		}
 
-		// Render the output of edit method
+		/**
+   * Render the output of edit method
+   *
+   * @returns array
+   */
 
 	}, {
 		key: 'render',
@@ -462,10 +494,15 @@ var Edit = function (_Component) {
 					'code',
 					null,
 					showContent ? updateMessage : '',
-					showContent ? state.html_content : 'Click here to add code ....'
+					showContent ? state.html_content : __('Click here to add code ', 'rtsyntax') + '....'
 				)
 			)];
 		}
+
+		/**
+   * Function to free worker object
+   */
+
 	}, {
 		key: 'componentWillUnmount',
 		value: function componentWillUnmount() {
@@ -503,19 +540,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // Initialize required components
 var Component = wp.element.Component;
 
-// Save class for save method of registeredBlockType
+/**
+ * Save class for save method of registeredBlockType
+ */
 
 var Save = function (_Component) {
 	_inherits(Save, _Component);
 
-	// Constructor
+	/**
+  * Constructor
+  */
 	function Save() {
 		_classCallCheck(this, Save);
 
 		return _possibleConstructorReturn(this, (Save.__proto__ || Object.getPrototypeOf(Save)).apply(this, arguments));
 	}
 
-	// Render the output of save method
+	/**
+  * Render the output of save method
+  *
+  * @returns jsx
+  */
 
 
 	_createClass(Save, [{
