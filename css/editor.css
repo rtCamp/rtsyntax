@@ -1,9 +1,0 @@
-/* Select Language Style  */
-.rtsyntax-edit > .blocks-base-control > .blocks-base-control__label {
-	width: 40%;
-	display: inline-block;
-}
-.rtsyntax-edit > .blocks-base-control > .blocks-select-control__input {
-	width: 58%;
-}
-

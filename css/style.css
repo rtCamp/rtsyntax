@@ -34,3 +34,11 @@ div.rtsyntax-edit textarea {
 	max-height: 60em;
 	min-height: 20em;
 }
+
+.rtsyntax-edit > .components-base-control .components-base-control__label {
+	width: 40%;
+	display: inline-block;
+}
+.rtsyntax-edit > .components-base-control .components-select-control__input {
+	width: 58%;
+}
