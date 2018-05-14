@@ -134,7 +134,7 @@ class Edit extends Component {
 
 				if (event.data.value.length !== 0) {
 					html_content = <div
-						className={'hljs'}
+						className='hljs'
 						dangerouslySetInnerHTML={{
 							__html: event.data.value
 						}}
@@ -161,7 +161,7 @@ class Edit extends Component {
 
 			if (nonworker_content.value.length !== 0) {
 				html_content = <div
-					className={'hljs'}
+					className='hljs'
 					dangerouslySetInnerHTML={{
 						__html: nonworker_content.value
 					}}
@@ -272,7 +272,7 @@ class Edit extends Component {
 		);
 
 		let updateMessage = state.updateMessage && debug ? (
-			<div className={'rtsyntax-code-update-message'} style={{
+			<div className='rtsyntax-code-update-message' style={{
 				backgroundColor: 'danger' === state.status ? '#ff000085' : 'rgba(5, 162, 104, 0.71)',
 			}}>
 				{state.updateMessage}
@@ -286,7 +286,7 @@ class Edit extends Component {
 
 			// Textarea to edit code, only show when in focus
 			isSelected && (
-				<div className={'rtsyntax-edit'}>
+				<div className='rtsyntax-edit'>
 					<SelectControl
 						label={__('Language:', 'rtsyntax')}
 						value={state.language}
@@ -297,7 +297,7 @@ class Edit extends Component {
 						onFocus={this.setAreaHeight}
 						onChange={this.changeStateContent}
 						onKeyDown={this.handleTabKey}
-						className={'form-control'}
+						className='form-control'
 						style={{height: state.areaHeight}}
 						placeholder={__("Enter code here", 'rtsyntax') + " ... "}
 					>
@@ -309,7 +309,7 @@ class Edit extends Component {
 
 			// Show actual highlighted code when not in focus
 			!isSelected && (
-				<pre className={'rtsyntax-admin-pre'}>
+				<pre className='rtsyntax-admin-pre'>
 					<code>
 						{showContent ? updateMessage : ''}
 						{showContent ? state.html_content : 'Click here to add code ....'}
