@@ -1,9 +1,9 @@
 === rtSyntax ===
-Contributors: rtcamp, rahul286, JoshuaAbenazer, harishchaudhari
+Contributors: rtcamp, rahul286, JoshuaAbenazer, harishchaudhari, sid177, montu3366
 Tags: code highlighter, highlighter, highlighting, syntax, syntax highlighter, source, jquery, javascript, nginx, php, code, CSS, html, php, sourcecode, xhtml, languages, TinyMCE
 Requires at least: 3.0
-Tested up to: 4.4
-Stable tag: 1.0.5
+Tested up to: 4.9.5
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate Link: http://rtcamp.com/donate/
@@ -75,3 +75,7 @@ Its just that we are hyperactive on our own forum!
 = 1.0.3 =
 
 * Update compatible upto
+
+= 1.1.0 =
+
+* Created `rtSyntax` gutenberg block

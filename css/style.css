@@ -1,0 +1,44 @@
+pre.rtsyntax-admin-pre, pre.rtsyntax-pre {
+	padding: 0;
+}
+
+pre.rtsyntax-admin-pre > code {
+	display: block;
+	padding: 0;
+	margin: 0;
+	background: none;
+}
+
+pre.rtsyntax-admin-pre > code > div.hljs {
+	padding: 1em;
+	max-height: 60em;
+	font-size: 100%;
+}
+
+pre.rtsyntax-admin-pre > code > div.rtsyntax-code-update-message {
+	padding: 5px 5px 5px 1.2em;
+	margin-bottom: 5px;
+	color: #ffffff;
+	border-radius: 4px;
+}
+
+
+pre.rtsyntax-pre > code.hljs {
+	padding: 1em;
+	margin: 0;
+	font-size: 100%;
+}
+
+div.rtsyntax-edit textarea {
+	width: 100%;
+	max-height: 60em;
+	min-height: 20em;
+}
+
+.rtsyntax-edit > .components-base-control .components-base-control__label {
+	width: 40%;
+	display: inline-block;
+}
+.rtsyntax-edit > .components-base-control .components-select-control__input {
+	width: 58%;
+}

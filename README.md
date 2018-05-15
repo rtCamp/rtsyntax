@@ -1,10 +1,12 @@
 # rtSyntax #
 
-* **Contributors:** [rtcamp] (http://profiles.wordpress.org/rtcamp), [rahul286] (http://profiles.wordpress.org/rahul286), [JoshuaAbenazer] (http://profiles.wordpress.org/JoshuaAbenazer), [harishchaudhari] (http://profiles.wordpress.org/harishchaudhari),
+* **Contributors:** [rtcamp] (http://profiles.wordpress.org/rtcamp), [rahul286] (http://profiles.wordpress.org/rahul286), [JoshuaAbenazer] (http://profiles.wordpress.org/JoshuaAbenazer), [harishchaudhari] (http://profiles.wordpress.org/harishchaudhari), [sid177] (https://profiles.wordpress.org/sid177), [montu3366] (https://profiles.wordpress.org/montu3366)
 
 * **License:** [GPL v2 or later] ( http://www.gnu.org/licenses/gpl-2.0.html)
 
 * **Donate Link:** http://rtcamp.com/donate/
+
+* **Tested upto:** 4.9.5
 
 A no-fuss, lightweight, fast and optimised syntax highlighter for WordPress
 
@@ -70,3 +72,7 @@ Its just that we are hyperactive on our own forum!
 #### 1.0.3 ####
 
 * Update compatible upto
+
+#### 1.1.0 ####
+
+* Created `rtSyntax` gutenberg block
